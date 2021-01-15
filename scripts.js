@@ -3,6 +3,8 @@ const fronts = Array.from(document.querySelectorAll('.front'))
 const backs = Array.from(document.querySelectorAll('.back'))
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId
+firstCardInner = null
+secondCardInner = null
 
 const objects = [
     {id:0, bgimage: 'back.jpg'},
@@ -45,58 +47,49 @@ function randomCardLocation(){
 
         el.onclick = (event) => {
             let idOfElement = cards.indexOf(event.target.parentNode)
-
-            //console.log('Index of card is ' + idOfElement)
             
-                if(firstCardInner === undefined){
+                if(firstCardInner === null){
                     firstCardInner = backs[idOfElement].innerHTML
                     firstCardId = idOfElement
-                    console.log('First card id is ' + firstCardId)
-                    console.log('First card innerHTML is ' + firstCardInner)
-                }else{
-                    secondCardInner = backs[idOfElement].innerHTML
-                    secondCardId = idOfElement
-                    console.log('Second card id is ' + secondCardId)
-                    console.log('Second card innerHTML is ' + secondCardInner)
-                    compareCards(idOfElement/* firstCardInner, secondCardInner, firstCardId, secondCardId */)
-                }
 
-                if(isCardVisible === false){
                     fronts[index].classList.add('front-clicked')
                     backs[index].classList.add('back-clicked')
                 }else{
-                    fronts[index].classList.remove('front-clicked')
-                    backs[index].classList.remove('back-clicked')
+                    secondCardInner = backs[idOfElement].innerHTML
+                    secondCardId = idOfElement
+
+                    fronts[index].classList.add('front-clicked')
+                    backs[index].classList.add('back-clicked')
+
+                    compareCards()
                 }
                 isCardVisible = !isCardVisible
-                //console.log(firstCardInner, secondCardInner)
         }
     })
 }
 
-function compareCards(idOfElement/* firstCardInner, secondCardInner, firstCardId, secondCardId */){
-    console.log('fInner: ' + firstCardInner + ' sInner: ' + secondCardInner)
-    console.log(firstCardId, secondCardId)
+function compareCards(){
     if(firstCardInner === secondCardInner){
         cards[firstCardId].style.visibility = 'hidden'
         cards[secondCardId].style.visibility = 'hidden'
-        firstCardInner = undefined
-        secondCardInner = undefined
+        firstCardInner = null
+        secondCardInner = null
         firstCardId = ''
         secondCardId = ''
-        console.log('fInner: ' + firstCardInner + ' sInner: ' + secondCardInner + ' after reset')
     }else{
-        fronts[firstCardId].classList.remove('front-clicked')
-        backs[firstCardId].classList.remove('back-clicked')
-        fronts[secondCardId].classList.remove('front-clicked')
-        backs[secondCardId].classList.remove('back-clicked')
-        cards[firstCardId].isCardVisible = false
-        cards[secondCardId].isCardVisible = false
-        firstCardInner = undefined
-        secondCardInner = undefined
-        firstCardId = ''
-        secondCardId = ''
-        console.log('fInner: ' + firstCardInner + ' sInner: ' + secondCardInner + ' after reset')
+        setTimeout(function(){
+            fronts[firstCardId].classList.remove('front-clicked')
+            backs[firstCardId].classList.remove('back-clicked')
+            fronts[secondCardId].classList.remove('front-clicked')
+            backs[secondCardId].classList.remove('back-clicked')
+            cards[firstCardId].isCardVisible = false
+            cards[secondCardId].isCardVisible = false
+            firstCardInner = null
+            secondCardInner = null
+            firstCardId = ''
+            secondCardId = ''
+            },
+            1000);
     }
 }
 
