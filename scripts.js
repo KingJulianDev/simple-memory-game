@@ -25,9 +25,9 @@ const objects = [
     {id:7, bgimage: 'back.jpg'},
 ]
 
-const usedObjects = []
+const usedObjects = []          //использованые объекты 
 
-function randomCardLocation(){
+function randomCardLocation(){          //случайное расположение карточек
     cards.forEach((el) => {
         let index = cards.indexOf(el)
         let randomNumber = Math.floor(Math.random()*objects.length)
@@ -45,39 +45,58 @@ function randomCardLocation(){
             usedObjects.push(randomNumber)
         }
 
-        el.onclick = (event) => {
+        el.onclick = (event) => {           //вешаем онКлики на карточки
             let idOfElement = cards.indexOf(event.target.parentNode)
             
-                if(firstCardInner === null){
+                if(firstCardInner === null){            //записываем данные первой карточки
                     firstCardInner = backs[idOfElement].innerHTML
                     firstCardId = idOfElement
 
                     fronts[index].classList.add('front-clicked')
                     backs[index].classList.add('back-clicked')
                 }else{
-                    secondCardInner = backs[idOfElement].innerHTML
-                    secondCardId = idOfElement
+                    if(idOfElement != firstCardId){         //если карточка не одна и та же...
+                        secondCardInner = backs[idOfElement].innerHTML          //...записываем данные второй карточки
+                        secondCardId = idOfElement
 
-                    fronts[index].classList.add('front-clicked')
-                    backs[index].classList.add('back-clicked')
+                        fronts[index].classList.add('front-clicked')
+                        backs[index].classList.add('back-clicked')
 
-                    compareCards()
+                        compareCards()
+                    }
                 }
                 isCardVisible = !isCardVisible
         }
     })
 }
 
-function compareCards(){
+function blockCards(){
+    cards.forEach((el) => {
+        el.style.pointerEvents = 'none'
+    })
+    setTimeout(function(){
+        cards.forEach((el) => {
+            el.style.pointerEvents = 'all'
+        })
+    },
+    1000)
+}
+
+function compareCards(){            //сравниваем карточки
     if(firstCardInner === secondCardInner){
-        cards[firstCardId].style.visibility = 'hidden'
-        cards[secondCardId].style.visibility = 'hidden'
-        firstCardInner = null
-        secondCardInner = null
-        firstCardId = ''
-        secondCardId = ''
+        blockCards()
+        setTimeout(function(){          //карточки совпали,удаляем
+            cards[firstCardId].style.visibility = 'hidden'
+            cards[secondCardId].style.visibility = 'hidden'
+            firstCardInner = null
+            secondCardInner = null
+            firstCardId = ''
+            secondCardId = ''
+            },
+            500);
     }else{
-        setTimeout(function(){
+        blockCards()
+        setTimeout(function(){          //карточки не совпали,переворачиваем назад
             fronts[firstCardId].classList.remove('front-clicked')
             backs[firstCardId].classList.remove('back-clicked')
             fronts[secondCardId].classList.remove('front-clicked')
