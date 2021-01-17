@@ -1,3 +1,23 @@
+/* const fronts = Array.from(document.querySelectorAll('.front'))
+const backs = Array.from(document.querySelectorAll('.back'))
+const cards = Array.from(document.querySelectorAll('.card'))
+
+
+
+cards.forEach((el) => {
+    el.onclick = (event) => {
+        let index = cards.indexOf(event.target.parentNode)
+        let classListArr = Array.from(fronts[index].classList)
+        if(classListArr.includes('front-clicked')){
+            fronts[index].classList.remove('front-clicked')
+            backs[index].classList.remove('back-clicked')
+        }else{
+            fronts[index].classList.add('front-clicked')
+            backs[index].classList.add('back-clicked')
+        }
+    }
+}) */
+
 const cards = Array.from(document.querySelectorAll('.card'))
 const fronts = Array.from(document.querySelectorAll('.front'))
 const backs = Array.from(document.querySelectorAll('.back'))
@@ -23,6 +43,10 @@ const objects = [
     {id:6, bgimage: 'back.jpg'},
     {id:7, bgimage: 'back.jpg'},
     {id:7, bgimage: 'back.jpg'},
+    {id:8, bgimage: 'back.jpg'},
+    {id:8, bgimage: 'back.jpg'},
+    {id:9, bgimage: 'back.jpg'},
+    {id:9, bgimage: 'back.jpg'},
 ]
 
 const usedObjects = []          //использованые объекты 
@@ -113,15 +137,3 @@ function compareCards(){            //сравниваем карточки
 }
 
 randomCardLocation()
-
-//cards.forEach((el) => {
-    //let index = cards.indexOf(el)
-    //let randomCardContent = Math.floor(Math.random()*objects.length)
-    //let isCardVisible = false
-    
-    //usedObjects.push(randomCardContent)
-    //backs[index].innerHTML = objects[randomCardContent].id
-    //objects.splice(randomCardContent, 1) 
-    //console.log(event.target.nextElementSibling.innerHTML)
-    
-//})
