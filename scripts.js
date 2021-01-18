@@ -18,9 +18,11 @@ cards.forEach((el) => {
     }
 }) */
 
-const cards = Array.from(document.querySelectorAll('.card'))
-const fronts = Array.from(document.querySelectorAll('.front'))
-const backs = Array.from(document.querySelectorAll('.back'))
+let cards //= Array.from(document.querySelectorAll('.card'))
+let fronts //= Array.from(document.querySelectorAll('.front'))
+let backs //= Array.from(document.querySelectorAll('.back'))
+const sizeBtns = Array.from(document.querySelectorAll('.size-btn'))
+const gameScreen = document.querySelector('.game')
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId
 firstCardInner = null
@@ -51,7 +53,51 @@ const objects = [
 
 const usedObjects = []          //использованые объекты 
 
+sizeBtns.forEach((el) => {          //выбираем размер игрового поля
+    el.onclick = (event) => {
+        let id =  (event.target.id)
+        checkDeskSize(id)
+        console.log(Array.from(gameScreen.children))
+    }
+})
+
+function renderGamaDesk(x) {            //рендерим игровое поле 
+    for(let i = 0; i < x; i++){
+    gameScreen.insertAdjacentHTML("afterbegin",
+    `
+    <div class="card">
+        <div class="front"></div>
+        <div class="back"></div>
+    </div>
+    `
+    )
+    }
+    randomCardLocation()
+}
+
+function checkDeskSize(id){         //подгоняем грид под количество карточек
+    if(id === '0'){
+        (gameScreen.style.gridTemplateColumns = 'repeat(4, 1fr)', 
+        renderGamaDesk(12))
+    }else if(id === '1'){
+        (gameScreen.style.gridTemplateColumns = 'repeat(5, 1fr)', 
+        renderGamaDesk(20))
+    }else if(id === '2'){
+        (gameScreen.style.gridTemplateColumns = 'repeat(6, 1fr)', 
+        renderGamaDesk(30))
+    }else if(id === '3'){
+        (gameScreen.style.gridTemplateColumns = 'repeat(7, 1fr)', 
+        renderGamaDesk(42))
+    }else if(id === '4'){
+        (gameScreen.style.gridTemplateColumns = 'repeat(8, 1fr)', 
+        renderGamaDesk(56))
+    }
+}
+
 function randomCardLocation(){          //случайное расположение карточек
+    cards = Array.from(document.querySelectorAll('.card'))
+    fronts = Array.from(document.querySelectorAll('.front'))
+    backs = Array.from(document.querySelectorAll('.back'))
     cards.forEach((el) => {
         let index = cards.indexOf(el)
         let randomNumber = Math.floor(Math.random()*objects.length)
@@ -136,4 +182,9 @@ function compareCards(){            //сравниваем карточки
     }
 }
 
-randomCardLocation()
+const reset = document.getElementById('clear')
+reset.onclick = () => {
+    Array.from(gameScreen.children).forEach((el) => {
+        el.remove()
+    })
+}
