@@ -49,16 +49,49 @@ const objects = [
     {id:8, bgimage: 'back.jpg'},
     {id:9, bgimage: 'back.jpg'},
     {id:9, bgimage: 'back.jpg'},
+    {id:10, bgimage: 'back.jpg'},
+    {id:10, bgimage: 'back.jpg'},
+    {id:11, bgimage: 'back.jpg'},
+    {id:11, bgimage: 'back.jpg'},
+    {id:12, bgimage: 'back.jpg'},
+    {id:12, bgimage: 'back.jpg'},
+    {id:13, bgimage: 'back.jpg'},
+    {id:13, bgimage: 'back.jpg'},
+    {id:14, bgimage: 'back.jpg'},
+    {id:14, bgimage: 'back.jpg'},
 ]
 
-const usedObjects = []          //использованые объекты 
+let usedObjects = []          //использованые объекты 
 
 sizeBtns.forEach((el) => {          //выбираем размер игрового поля
     el.onclick = (event) => {
-        let id =  (event.target.id)
+        let id = (event.target.id)
+        if(gameScreen.children.length > 0){
+            Array.from(gameScreen.children).forEach((el) => {
+                el.remove()
+            })
+        usedObjects = []
         checkDeskSize(id)
-        console.log(Array.from(gameScreen.children))
+        }else{
+            checkDeskSize(id)
+        }
+        
+
     }
+    /* if(gameScreen.children.length > 0){
+        Array.from(gameScreen.children).forEach((el) => {
+            el.remove()
+        })  
+        usedObjects = []
+        console.log(usedObjects)
+         
+    }else{
+        el.onclick = (event) => {
+            let id =  (event.target.id)
+            checkDeskSize(id)
+            console.dir(gameScreen.children.length)
+        }
+    } */
 })
 
 function renderGamaDesk(x) {            //рендерим игровое поле 
@@ -98,6 +131,7 @@ function randomCardLocation(){          //случайное расположе�
     cards = Array.from(document.querySelectorAll('.card'))
     fronts = Array.from(document.querySelectorAll('.front'))
     backs = Array.from(document.querySelectorAll('.back'))
+
     cards.forEach((el) => {
         let index = cards.indexOf(el)
         let randomNumber = Math.floor(Math.random()*objects.length)
@@ -187,4 +221,5 @@ reset.onclick = () => {
     Array.from(gameScreen.children).forEach((el) => {
         el.remove()
     })
+    usedObjects = []
 }
