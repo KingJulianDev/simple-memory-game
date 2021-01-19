@@ -24,44 +24,48 @@ let backs //= Array.from(document.querySelectorAll('.back'))
 const sizeBtns = Array.from(document.querySelectorAll('.size-btn'))
 const gameScreen = document.querySelector('.game')
 
-let firstCardInner, firstCardId, secondCardInner, secondCardId
+let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards
 firstCardInner = null
 secondCardInner = null
 
+/* const objects = [
+    [{id:0, bgimage: 'back.jpg'}, {id:0, bgimage: 'back.jpg'}],
+    [{id:1, bgimage: 'back.jpg'}, {id:1, bgimage: 'back.jpg'}],
+    [{id:2, bgimage: 'back.jpg'}, {id:2, bgimage: 'back.jpg'}],
+    [{id:3, bgimage: 'back.jpg'}, {id:3, bgimage: 'back.jpg'}],
+    [{id:4, bgimage: 'back.jpg'}, {id:4, bgimage: 'back.jpg'}],
+    [{id:5, bgimage: 'back.jpg'}, {id:5, bgimage: 'back.jpg'}],
+    [{id:6, bgimage: 'back.jpg'}, {id:6, bgimage: 'back.jpg'}],
+    [{id:7, bgimage: 'back.jpg'}, {id:7, bgimage: 'back.jpg'}],
+    [{id:8, bgimage: 'back.jpg'}, {id:8, bgimage: 'back.jpg'}],
+    [{id:9, bgimage: 'back.jpg'}, {id:9, bgimage: 'back.jpg'}],
+    [{id:10, bgimage: 'back.jpg'}, {id:10, bgimage: 'back.jpg'}],
+    [{id:11, bgimage: 'back.jpg'}, {id:11, bgimage: 'back.jpg'}],
+    [{id:12, bgimage: 'back.jpg'}, {id:12, bgimage: 'back.jpg'}],
+    [{id:13, bgimage: 'back.jpg'}, {id:13, bgimage: 'back.jpg'}],
+    [{id:14, bgimage: 'back.jpg'}, {id:14, bgimage: 'back.jpg'}],
+] */
+
 const objects = [
-    {id:0, bgimage: 'back.jpg'},
-    {id:0, bgimage: 'back.jpg'},
-    {id:1, bgimage: 'back.jpg'},
-    {id:1, bgimage: 'back.jpg'},
-    {id:2, bgimage: 'back.jpg'},
-    {id:2, bgimage: 'back.jpg'},
-    {id:3, bgimage: 'back.jpg'},
-    {id:3, bgimage: 'back.jpg'},
-    {id:4, bgimage: 'back.jpg'},
-    {id:4, bgimage: 'back.jpg'},
-    {id:5, bgimage: 'back.jpg'},
-    {id:5, bgimage: 'back.jpg'},
-    {id:6, bgimage: 'back.jpg'},
-    {id:6, bgimage: 'back.jpg'},
-    {id:7, bgimage: 'back.jpg'},
-    {id:7, bgimage: 'back.jpg'},
-    {id:8, bgimage: 'back.jpg'},
-    {id:8, bgimage: 'back.jpg'},
-    {id:9, bgimage: 'back.jpg'},
-    {id:9, bgimage: 'back.jpg'},
-    {id:10, bgimage: 'back.jpg'},
-    {id:10, bgimage: 'back.jpg'},
-    {id:11, bgimage: 'back.jpg'},
-    {id:11, bgimage: 'back.jpg'},
-    {id:12, bgimage: 'back.jpg'},
-    {id:12, bgimage: 'back.jpg'},
-    {id:13, bgimage: 'back.jpg'},
-    {id:13, bgimage: 'back.jpg'},
-    {id:14, bgimage: 'back.jpg'},
-    {id:14, bgimage: 'back.jpg'},
+    {id: 0, bgimage: 'back.jpg'},
+    {id: 1, bgimage: 'back.jpg'},
+    {id: 2, bgimage: 'back.jpg'},
+    {id: 3, bgimage: 'back.jpg'},
+    {id: 4, bgimage: 'back.jpg'},
+    {id: 5, bgimage: 'back.jpg'},
+    {id: 6, bgimage: 'back.jpg'},
+    {id: 7, bgimage: 'back.jpg'},
+    {id: 8, bgimage: 'back.jpg'},
+    {id: 9, bgimage: 'back.jpg'},
+    {id: 10, bgimage: 'back.jpg'},
+    {id: 11, bgimage: 'back.jpg'},
+    {id: 12, bgimage: 'back.jpg'},
+    {id: 13, bgimage: 'back.jpg'},
+    {id: 14, bgimage: 'back.jpg'},
 ]
 
 let usedObjects = []          //использованые объекты 
+let usedCards = []
 
 sizeBtns.forEach((el) => {          //выбираем размер игрового поля
     el.onclick = (event) => {
@@ -70,28 +74,12 @@ sizeBtns.forEach((el) => {          //выбираем размер игрово
             Array.from(gameScreen.children).forEach((el) => {
                 el.remove()
             })
-        usedObjects = []
-        checkDeskSize(id)
+            usedObjects = []
+            checkDeskSize(id)
         }else{
             checkDeskSize(id)
         }
-        
-
     }
-    /* if(gameScreen.children.length > 0){
-        Array.from(gameScreen.children).forEach((el) => {
-            el.remove()
-        })  
-        usedObjects = []
-        console.log(usedObjects)
-         
-    }else{
-        el.onclick = (event) => {
-            let id =  (event.target.id)
-            checkDeskSize(id)
-            console.dir(gameScreen.children.length)
-        }
-    } */
 })
 
 function renderGamaDesk(x) {            //рендерим игровое поле 
@@ -105,30 +93,93 @@ function renderGamaDesk(x) {            //рендерим игровое пол
     `
     )
     }
-    randomCardLocation()
+    randomCardLocation(x)
 }
 
 function checkDeskSize(id){         //подгоняем грид под количество карточек
     if(id === '0'){
-        (gameScreen.style.gridTemplateColumns = 'repeat(4, 1fr)', 
-        renderGamaDesk(12))
+        gameScreen.style.gridTemplateColumns = 'repeat(4, 1fr)'
+        quantityOfCards = 12
+        renderGamaDesk(12)
     }else if(id === '1'){
-        (gameScreen.style.gridTemplateColumns = 'repeat(5, 1fr)', 
-        renderGamaDesk(20))
+        gameScreen.style.gridTemplateColumns = 'repeat(5, 1fr)'
+        quantityOfCards = 20
+        renderGamaDesk(20)
     }else if(id === '2'){
-        (gameScreen.style.gridTemplateColumns = 'repeat(6, 1fr)', 
-        renderGamaDesk(30))
+        gameScreen.style.gridTemplateColumns = 'repeat(6, 1fr)'
+        quantityOfCards = 30
+        renderGamaDesk(30)
     }else if(id === '3'){
-        (gameScreen.style.gridTemplateColumns = 'repeat(7, 1fr)', 
-        renderGamaDesk(42))
+        gameScreen.style.gridTemplateColumns = 'repeat(7, 1fr)'
+        quantityOfCards = 42
+        renderGamaDesk(42)
     }else if(id === '4'){
-        (gameScreen.style.gridTemplateColumns = 'repeat(8, 1fr)', 
-        renderGamaDesk(56))
+        gameScreen.style.gridTemplateColumns = 'repeat(8, 1fr)'
+        quantityOfCards = 56
+        renderGamaDesk(56)
     }
 }
 
-function randomCardLocation(){          //случайное расположение карточек
+function randomCardLocation(x){          //случайное расположение карточек
     cards = Array.from(document.querySelectorAll('.card'))
+    fronts = Array.from(document.querySelectorAll('.front'))
+    backs = Array.from(document.querySelectorAll('.back'))
+
+    console.log(x)
+
+    for (let i = 0; i < x/2; i++) {
+        let randomNumber1 = Math.floor(Math.random()*x)
+        let randomNumber2 = Math.floor(Math.random()*x)
+
+        if(usedObjects.includes(randomNumber1) === true){
+            while(usedObjects.includes(randomNumber1) === true){
+                randomNumber1 = Math.floor(Math.random()*x)
+            }
+        }else{
+            usedObjects.push(randomNumber1)
+            backs[randomNumber1].innerHTML = objects[i].id
+        }
+
+        if(usedObjects.includes(randomNumber2) === true){
+            while(usedObjects.includes(randomNumber2) === true){
+                randomNumber2 = Math.floor(Math.random()*x)
+            }
+        }else{
+            usedObjects.push(randomNumber2)
+            backs[randomNumber2].innerHTML = objects[i].id
+        }
+
+        /* do {
+            randomNumber1 = Math.floor(Math.random()*x)
+        } while (usedObjects.includes(randomNumber1) === true);
+        usedObjects.push(randomNumber1)
+
+        do {
+            randomNumber2 = Math.floor(Math.random()*x)
+        } while (usedObjects.includes(randomNumber2) === true);
+        usedObjects.push(randomNumber2)
+        console.log(usedObjects) */
+
+        //backs[randomNumber1].innerHTML = objects[i].id
+        //backs[randomNumber2].innerHTML = objects[i].id
+        
+    }
+    let test = document.querySelectorAll('.back')
+    console.log(test.length)
+    test.forEach((el) => {
+        console.log(el.innerHTML)
+    })
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /* cards = Array.from(document.querySelectorAll('.card'))
     fronts = Array.from(document.querySelectorAll('.front'))
     backs = Array.from(document.querySelectorAll('.back'))
 
@@ -137,7 +188,25 @@ function randomCardLocation(){          //случайное расположе�
         let randomNumber = Math.floor(Math.random()*objects.length)
         let isCardVisible = false
         
-        if(usedObjects.includes(randomNumber) === true){
+        if(usedObjects.includes(randomNumber)){
+            do {
+                randomNumber = Math.floor(Math.random()*objects.length)
+            } while (usedObjects.includes(randomNumber) === true);
+
+            objects[randomNumber].forEach((el) => {
+                backs[randomNumber].innerHTML = el.id
+            })
+            usedObjects.push(randomNumber)
+        }else{
+            objects[randomNumber].forEach((el) => {
+                backs[randomNumber].innerHTML = el.id
+            })
+            usedObjects.push(randomNumber)
+        } */
+
+
+
+        /* if(usedObjects.includes(randomNumber) === true){
             do {
                 randomNumber = Math.floor(Math.random()*objects.length)
             } while (usedObjects.includes(randomNumber) === true);
@@ -147,8 +216,10 @@ function randomCardLocation(){          //случайное расположе�
         }else{
             backs[index].innerHTML = objects[randomNumber].id
             usedObjects.push(randomNumber)
-        }
+        } */
 
+
+    cards.forEach((el) => {
         el.onclick = (event) => {           //вешаем онКлики на карточки
             let idOfElement = cards.indexOf(event.target.parentNode)
             
@@ -156,21 +227,21 @@ function randomCardLocation(){          //случайное расположе�
                     firstCardInner = backs[idOfElement].innerHTML
                     firstCardId = idOfElement
 
-                    fronts[index].classList.add('front-clicked')
-                    backs[index].classList.add('back-clicked')
+                    fronts[idOfElement].classList.add('front-clicked')
+                    backs[idOfElement].classList.add('back-clicked')
                 }else{
                     if(idOfElement != firstCardId){         //если карточка не одна и та же...
                         secondCardInner = backs[idOfElement].innerHTML          //...записываем данные второй карточки
                         secondCardId = idOfElement
 
-                        fronts[index].classList.add('front-clicked')
-                        backs[index].classList.add('back-clicked')
+                        fronts[idOfElement].classList.add('front-clicked')
+                        backs[idOfElement].classList.add('back-clicked')
 
                         compareCards()
                     }
                 }
-                isCardVisible = !isCardVisible
-        }
+                //isCardVisible = !isCardVisible
+        } 
     })
 }
 
