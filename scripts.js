@@ -135,6 +135,8 @@ function randomCardLocation(x){          //случайное расположе
             while(usedObjects.includes(randomNumber1) === true){
                 randomNumber1 = Math.floor(Math.random()*x)
             }
+            usedObjects.push(randomNumber1)
+            backs[randomNumber1].innerHTML = objects[i].id
         }else{
             usedObjects.push(randomNumber1)
             backs[randomNumber1].innerHTML = objects[i].id
@@ -144,6 +146,8 @@ function randomCardLocation(x){          //случайное расположе
             while(usedObjects.includes(randomNumber2) === true){
                 randomNumber2 = Math.floor(Math.random()*x)
             }
+            usedObjects.push(randomNumber2)
+            backs[randomNumber2].innerHTML = objects[i].id
         }else{
             usedObjects.push(randomNumber2)
             backs[randomNumber2].innerHTML = objects[i].id
