@@ -1,67 +1,40 @@
-/* const fronts = Array.from(document.querySelectorAll('.front'))
-const backs = Array.from(document.querySelectorAll('.back'))
-const cards = Array.from(document.querySelectorAll('.card'))
-
-
-
-cards.forEach((el) => {
-    el.onclick = (event) => {
-        let index = cards.indexOf(event.target.parentNode)
-        let classListArr = Array.from(fronts[index].classList)
-        if(classListArr.includes('front-clicked')){
-            fronts[index].classList.remove('front-clicked')
-            backs[index].classList.remove('back-clicked')
-        }else{
-            fronts[index].classList.add('front-clicked')
-            backs[index].classList.add('back-clicked')
-        }
-    }
-}) */
-
-let cards //= Array.from(document.querySelectorAll('.card'))
-let fronts //= Array.from(document.querySelectorAll('.front'))
-let backs //= Array.from(document.querySelectorAll('.back'))
 const sizeBtns = Array.from(document.querySelectorAll('.size-btn'))
 const gameScreen = document.querySelector('.game')
 
-let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards
+let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs
 firstCardInner = null
 secondCardInner = null
 
-/* const objects = [
-    [{id:0, bgimage: 'back.jpg'}, {id:0, bgimage: 'back.jpg'}],
-    [{id:1, bgimage: 'back.jpg'}, {id:1, bgimage: 'back.jpg'}],
-    [{id:2, bgimage: 'back.jpg'}, {id:2, bgimage: 'back.jpg'}],
-    [{id:3, bgimage: 'back.jpg'}, {id:3, bgimage: 'back.jpg'}],
-    [{id:4, bgimage: 'back.jpg'}, {id:4, bgimage: 'back.jpg'}],
-    [{id:5, bgimage: 'back.jpg'}, {id:5, bgimage: 'back.jpg'}],
-    [{id:6, bgimage: 'back.jpg'}, {id:6, bgimage: 'back.jpg'}],
-    [{id:7, bgimage: 'back.jpg'}, {id:7, bgimage: 'back.jpg'}],
-    [{id:8, bgimage: 'back.jpg'}, {id:8, bgimage: 'back.jpg'}],
-    [{id:9, bgimage: 'back.jpg'}, {id:9, bgimage: 'back.jpg'}],
-    [{id:10, bgimage: 'back.jpg'}, {id:10, bgimage: 'back.jpg'}],
-    [{id:11, bgimage: 'back.jpg'}, {id:11, bgimage: 'back.jpg'}],
-    [{id:12, bgimage: 'back.jpg'}, {id:12, bgimage: 'back.jpg'}],
-    [{id:13, bgimage: 'back.jpg'}, {id:13, bgimage: 'back.jpg'}],
-    [{id:14, bgimage: 'back.jpg'}, {id:14, bgimage: 'back.jpg'}],
-] */
-
 const objects = [
-    {id: 0, bgimage: 'back.jpg'},
-    {id: 1, bgimage: 'back.jpg'},
-    {id: 2, bgimage: 'back.jpg'},
-    {id: 3, bgimage: 'back.jpg'},
-    {id: 4, bgimage: 'back.jpg'},
-    {id: 5, bgimage: 'back.jpg'},
-    {id: 6, bgimage: 'back.jpg'},
-    {id: 7, bgimage: 'back.jpg'},
-    {id: 8, bgimage: 'back.jpg'},
-    {id: 9, bgimage: 'back.jpg'},
-    {id: 10, bgimage: 'back.jpg'},
-    {id: 11, bgimage: 'back.jpg'},
-    {id: 12, bgimage: 'back.jpg'},
-    {id: 13, bgimage: 'back.jpg'},
-    {id: 14, bgimage: 'back.jpg'},
+    {id: 0, cars: 'img/audi.png'},
+    {id: 1, cars: 'img/bmw.png'},
+    {id: 2, cars: 'img/bugatti.png'},
+    {id: 3, cars: 'img/chevrolet.png'},
+    {id: 4, cars: 'img/ferrari.png'},
+    {id: 5, cars: 'img/fiat.png'},
+    {id: 6, cars: 'img/ford.png'},
+    {id: 7, cars: 'img/honda.png'},
+    {id: 8, cars: 'img/hyundai.png'},
+    {id: 9, cars: 'img/infiniti.png'},
+    {id: 10, cars: 'img/jaguar.png'},
+    {id: 11, cars: 'img/lamborghini.png'},
+    {id: 12, cars: 'img/lexus.png'},
+    {id: 13, cars: 'img/mercedes.png'},
+    {id: 14, cars: 'img/mazda.png'},
+    {id: 15, cars: 'img/mg.png'},
+    {id: 16, cars: 'img/mini.png'},
+    {id: 17, cars: 'img/mitsubushi.png'},
+    {id: 18, cars: 'img/nissan.png'},
+    {id: 19, cars: 'img/opel.png'},
+    {id: 20, cars: 'img/porsche.png'},
+    {id: 21, cars: 'img/romeo.png'},
+    {id: 22, cars: 'img/rover.png'},
+    {id: 23, cars: 'img/subaru.png'},
+    {id: 24, cars: 'img/suzuki.png'},
+    {id: 25, cars: 'img/tesla.png'},
+    {id: 26, cars: 'img/toyota.png'},
+    {id: 27, cars: 'img/volkswagen.png'},
+    
 ]
 
 let usedObjects = []          //использованые объекты 
@@ -82,9 +55,10 @@ sizeBtns.forEach((el) => {          //выбираем размер игрово
     }
 })
 
-function renderGamaDesk(x) {            //рендерим игровое поле 
+function randerGameDesk(x) {            //рендерим игровое поле 
     for(let i = 0; i < x; i++){
-    gameScreen.insertAdjacentHTML("afterbegin",
+        //<img src=${objects[i].cars}>
+    gameScreen.insertAdjacentHTML("beforeend",
     `
     <div class="card">
         <div class="front"></div>
@@ -100,23 +74,23 @@ function checkDeskSize(id){         //подгоняем грид под кол�
     if(id === '0'){
         gameScreen.style.gridTemplateColumns = 'repeat(4, 1fr)'
         quantityOfCards = 12
-        renderGamaDesk(12)
+        randerGameDesk(12)
     }else if(id === '1'){
         gameScreen.style.gridTemplateColumns = 'repeat(5, 1fr)'
         quantityOfCards = 20
-        renderGamaDesk(20)
+        randerGameDesk(20)
     }else if(id === '2'){
         gameScreen.style.gridTemplateColumns = 'repeat(6, 1fr)'
         quantityOfCards = 30
-        renderGamaDesk(30)
+        randerGameDesk(30)
     }else if(id === '3'){
         gameScreen.style.gridTemplateColumns = 'repeat(7, 1fr)'
         quantityOfCards = 42
-        renderGamaDesk(42)
+        randerGameDesk(42)
     }else if(id === '4'){
         gameScreen.style.gridTemplateColumns = 'repeat(8, 1fr)'
         quantityOfCards = 56
-        renderGamaDesk(56)
+        randerGameDesk(56)
     }
 }
 
@@ -136,10 +110,20 @@ function randomCardLocation(x){          //случайное расположе
                 randomNumber1 = Math.floor(Math.random()*x)
             }
             usedObjects.push(randomNumber1)
-            backs[randomNumber1].innerHTML = objects[i].id
+            backs[randomNumber1].insertAdjacentHTML(
+                "afterbegin",
+                `
+                    <img src = "${objects[i].cars}">
+                `
+            ) 
         }else{
             usedObjects.push(randomNumber1)
-            backs[randomNumber1].innerHTML = objects[i].id
+            backs[randomNumber1].insertAdjacentHTML(
+                "afterbegin",
+                `
+                    <img src = "${objects[i].cars}">
+                `
+            )
         }
 
         if(usedObjects.includes(randomNumber2) === true){
@@ -147,81 +131,22 @@ function randomCardLocation(x){          //случайное расположе
                 randomNumber2 = Math.floor(Math.random()*x)
             }
             usedObjects.push(randomNumber2)
-            backs[randomNumber2].innerHTML = objects[i].id
+            backs[randomNumber2].insertAdjacentHTML(
+                "afterbegin",
+                `
+                    <img src = "${objects[i].cars}">
+                `
+            )
         }else{
             usedObjects.push(randomNumber2)
-            backs[randomNumber2].innerHTML = objects[i].id
+            backs[randomNumber2].insertAdjacentHTML(
+                "afterbegin",
+                `
+                    <img src = "${objects[i].cars}">
+                `
+            )
         }
-
-        /* do {
-            randomNumber1 = Math.floor(Math.random()*x)
-        } while (usedObjects.includes(randomNumber1) === true);
-        usedObjects.push(randomNumber1)
-
-        do {
-            randomNumber2 = Math.floor(Math.random()*x)
-        } while (usedObjects.includes(randomNumber2) === true);
-        usedObjects.push(randomNumber2)
-        console.log(usedObjects) */
-
-        //backs[randomNumber1].innerHTML = objects[i].id
-        //backs[randomNumber2].innerHTML = objects[i].id
-        
     }
-    let test = document.querySelectorAll('.back')
-    console.log(test.length)
-    test.forEach((el) => {
-        console.log(el.innerHTML)
-    })
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /* cards = Array.from(document.querySelectorAll('.card'))
-    fronts = Array.from(document.querySelectorAll('.front'))
-    backs = Array.from(document.querySelectorAll('.back'))
-
-    cards.forEach((el) => {
-        let index = cards.indexOf(el)
-        let randomNumber = Math.floor(Math.random()*objects.length)
-        let isCardVisible = false
-        
-        if(usedObjects.includes(randomNumber)){
-            do {
-                randomNumber = Math.floor(Math.random()*objects.length)
-            } while (usedObjects.includes(randomNumber) === true);
-
-            objects[randomNumber].forEach((el) => {
-                backs[randomNumber].innerHTML = el.id
-            })
-            usedObjects.push(randomNumber)
-        }else{
-            objects[randomNumber].forEach((el) => {
-                backs[randomNumber].innerHTML = el.id
-            })
-            usedObjects.push(randomNumber)
-        } */
-
-
-
-        /* if(usedObjects.includes(randomNumber) === true){
-            do {
-                randomNumber = Math.floor(Math.random()*objects.length)
-            } while (usedObjects.includes(randomNumber) === true);
-
-            backs[index].innerHTML = objects[randomNumber].id
-            usedObjects.push(randomNumber)
-        }else{
-            backs[index].innerHTML = objects[randomNumber].id
-            usedObjects.push(randomNumber)
-        } */
-
 
     cards.forEach((el) => {
         el.onclick = (event) => {           //вешаем онКлики на карточки
@@ -244,7 +169,6 @@ function randomCardLocation(x){          //случайное расположе
                         compareCards()
                     }
                 }
-                //isCardVisible = !isCardVisible
         } 
     })
 }
@@ -289,12 +213,4 @@ function compareCards(){            //сравниваем карточки
             },
             1000);
     }
-}
-
-const reset = document.getElementById('clear')
-reset.onclick = () => {
-    Array.from(gameScreen.children).forEach((el) => {
-        el.remove()
-    })
-    usedObjects = []
 }

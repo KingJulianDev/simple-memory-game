@@ -12,6 +12,7 @@
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: minmax(100px, auto);
     grid-gap:1em;
+    /* background-image: url(img/ford.png); */
 }
 
 .div{
@@ -21,7 +22,7 @@
 }
 
 .card{
-    color: white;
+    /* color: white; */
     perspective: 1000px;
     position: relative;
     border-radius: 15%;
@@ -38,7 +39,7 @@
     border-radius: 15%;
     transition: 1s;
     box-shadow: 5px 5px 5px black;
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 
 .front{
@@ -46,7 +47,6 @@
 }
 
 .back{
-    background-color: goldenrod;
     color: black;
     transform: rotateY(180deg);
     font-size: 35px;
@@ -93,4 +93,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+img{
+    width: 100%;
+    height: auto;
+    border-radius: 15%;
 }
