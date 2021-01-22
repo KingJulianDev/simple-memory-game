@@ -214,3 +214,29 @@ function compareCards(){            //сравниваем карточки
             1000);
     }
 }
+
+const categories = document.querySelector('.categories')
+const size = document.querySelector('.size')
+const themes = document.querySelector('.themes')
+const options = document.querySelector('.options')
+const settings = document.querySelector('.settings')
+
+settings.onclick = () => {
+    let i = 0
+    let j = 0
+    let y = 0
+    let animation = setInterval(() => {
+        i += 7
+        j += 14
+        y += 21
+        size.style.left = i + 'px'
+        themes.style.left = j + 'px'
+        categories.style.left = y + 'px'
+        size.style.boxShadow = '5px 5px 5px black'
+        themes.style.boxShadow = '5px 5px 5px black'
+        categories.style.boxShadow = '5px 5px 5px black'
+    }, 20);
+    setTimeout(() => {
+        clearInterval(animation)
+    }, 300);
+}

@@ -1,17 +1,17 @@
 *{
     margin: 0;
     padding: 0;
-    background-color: darkolivegreen;
 }
 
 .game{
-    width: 50%;
+    width: 70%;
     height: 40vw;
     margin: 10px auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: minmax(100px, auto);
     grid-gap:1em;
+    display: none;
     /* background-image: url(img/ford.png); */
 }
 
@@ -62,6 +62,8 @@
 
 .desk-size{
     display: flex;
+    align-items: center;
+    height: 10vh;
 }
 
 .size-btn{
@@ -83,20 +85,58 @@
     transform: scale(1.1);
 }
 
-#clear{
-    width: 50px;
-    height: 50px;
-    border-radius: 15%;
-    border: 1px solid black;
-    background: red;
-    box-shadow: 5px 5px 5px black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 img{
     width: 100%;
     height: auto;
     border-radius: 15%;
+}
+
+.start-screen{
+    width: 70vw;
+    height: 100vh;
+    background-color: royalblue;
+    margin: 10px auto;
+}
+
+.options{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 12vh;
+    margin-left: 5%;
+}
+
+.btn{
+    width: 10vh;
+    height: 10vh;
+    background-color: brown;
+    /* box-shadow: 5px 5px 5px black; */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.settings{
+    z-index: 2;
+    box-shadow: 5px 5px 5px black;
+}
+
+.slider{
+    width: 80%;
+    position: relative;
+    margin: auto;
+    height: 30%;
+    background-color: green;
+    display: flex;
+    margin-top: 15px;
+}
+
+.item{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: greenyellow;
 }
