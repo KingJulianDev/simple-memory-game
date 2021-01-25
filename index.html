@@ -3,51 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS GRID</title>
+    <title>Memory Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="start-screen">
-        <!-- <div class="options">
-            <div class="btn settings">Settings</div>
-            <div class="btn categories">Cat</div>
-            <div class="btn size">Size</div>
-            <div class="btn themes">Theme</div>
+    <div class="game">
+        <div class="start-screen">
+            <div class="categories">
+                <div class="cat cars">Cars</div>
+                <div class="cat cartoons">Cartoons</div>
+                <div class="cat football">Football</div>
+                <div class="cat flags">Flags</div>
+            </div>
+    
+            <div class="decksize">
+                <div class="size" id="12">4*3</div>
+                <div class="size" id="20">5*4</div>
+                <div class="size" id="30">6*5</div>
+                <div class="size" id="42">7*6</div>
+            </div>
+    
+            <div class="start">Play!</div>
         </div>
-
-        <div class="desk-size">
-            <div class="size-btn" id="0">4*3</div>
-            <div class="size-btn" id="1">5*4</div>
-            <div class="size-btn" id="2">6*5</div>
-            <div class="size-btn" id="3">7*6</div>
-            <div class="size-btn" id="4">8*7</div>
-        </div> -->
-        <div class="slider">
-            <div class="item">
-                <div class="item-name">First</div>
-            </div>
-            <div class="item">
-                <div class="item-name">Second</div>
-            </div>
-            <div class="item">
-                <div class="item-name">Third</div>
-            </div>
-            <div class="item">
-                <div class="item-name">Fourth</div>
-            </div>
-            <div class="item">
-                <div class="item-name">Fifth</div>
-            </div>
-
-            <a class="prev" onclick="prevSlide()"></a>
-            <a class="next" onclick="nextSlide()"></a>
-        </div>
+    
+    
+        
+        <div class="game-screen"></div>
     </div>
 
-
     
-    <div class="game"></div>
 
 <script src="scripts.js"></script>
 </body>

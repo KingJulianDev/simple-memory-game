@@ -1,7 +1,9 @@
-const sizeBtns = Array.from(document.querySelectorAll('.size-btn'))
-const gameScreen = document.querySelector('.game')
+const sizeBtns = Array.from(document.querySelectorAll('.size'))
+const gameScreen = document.querySelector('.game-screen')
+const start = document.querySelector('.start')
+const startScreen = document.querySelector('.start-screen')
 
-let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs
+let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, quantity
 firstCardInner = null
 secondCardInner = null
 
@@ -40,7 +42,7 @@ const objects = [
 let usedObjects = []          //использованые объекты 
 let usedCards = []
 
-sizeBtns.forEach((el) => {          //выбираем размер игрового поля
+/* sizeBtns.forEach((el) => {          //выбираем размер игрового поля
     el.onclick = (event) => {
         let id = (event.target.id)
         if(gameScreen.children.length > 0){
@@ -53,10 +55,28 @@ sizeBtns.forEach((el) => {          //выбираем размер игрово
             checkDeskSize(id)
         }
     }
+}) */
+
+sizeBtns.forEach((el) => {
+    el.onclick = (event) => {
+        let id = (event.target.id)
+        sizeBtns.forEach((el) => {
+            el.classList.remove('active')
+        })
+        quantity = id
+        el.classList.add('active')
+        console.log(quantity)
+    }
 })
 
-function randerGameDesk(x) {            //рендерим игровое поле 
-    for(let i = 0; i < x; i++){
+start.onclick = () => {
+    startScreen.style.display = 'none'
+    gameScreen.style.display = 'grid'
+    checkDeskSize(quantity)
+}
+
+function renderGameDesk(quantity) {            //рендерим игровое поле 
+    for(let i = 0; i < quantity; i++){
         //<img src=${objects[i].cars}>
     gameScreen.insertAdjacentHTML("beforeend",
     `
@@ -67,30 +87,30 @@ function randerGameDesk(x) {            //рендерим игровое пол
     `
     )
     }
-    randomCardLocation(x)
+    randomCardLocation(quantity)
 }
 
-function checkDeskSize(id){         //подгоняем грид под количество карточек
-    if(id === '0'){
+function checkDeskSize(quantity){         //подгоняем грид под количество карточек
+    if(quantity === '12'){
         gameScreen.style.gridTemplateColumns = 'repeat(4, 1fr)'
-        quantityOfCards = 12
-        randerGameDesk(12)
-    }else if(id === '1'){
+        //quantityOfCards = 12
+        renderGameDesk(quantity)
+    }else if(quantity === '20'){
         gameScreen.style.gridTemplateColumns = 'repeat(5, 1fr)'
-        quantityOfCards = 20
-        randerGameDesk(20)
-    }else if(id === '2'){
+        //quantityOfCards = 20
+        renderGameDesk(quantity)
+    }else if(quantity === '30'){
         gameScreen.style.gridTemplateColumns = 'repeat(6, 1fr)'
-        quantityOfCards = 30
-        randerGameDesk(30)
-    }else if(id === '3'){
+        //quantityOfCards = 30
+        renderGameDesk(quantity)
+    }else if(quantity === '42'){
         gameScreen.style.gridTemplateColumns = 'repeat(7, 1fr)'
-        quantityOfCards = 42
-        randerGameDesk(42)
-    }else if(id === '4'){
+        //quantityOfCards = 42
+        renderGameDesk(quantity)
+    }else if(quantity === '4'){
         gameScreen.style.gridTemplateColumns = 'repeat(8, 1fr)'
-        quantityOfCards = 56
-        randerGameDesk(56)
+        //quantityOfCards = 56
+        randerGameDesk(quantity)
     }
 }
 
@@ -215,7 +235,7 @@ function compareCards(){            //сравниваем карточки
     }
 }
 
-const categories = document.querySelector('.categories')
+/* const categories = document.querySelector('.categories')
 const size = document.querySelector('.size')
 const themes = document.querySelector('.themes')
 const options = document.querySelector('.options')
@@ -239,4 +259,4 @@ settings.onclick = () => {
     setTimeout(() => {
         clearInterval(animation)
     }, 300);
-}
+} */

@@ -4,15 +4,91 @@
 }
 
 .game{
-    width: 70%;
-    height: 40vw;
-    margin: 10px auto;
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+}
+/* Start screen */
+.start-screen{
+    width: 100%;
+    height: 100vh;
+    background-color: lightblue;
+    margin: 0 auto;
+}
+
+.categories{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 45%;
+    justify-content: center;
+}
+
+.categories div{
+    width: 40%;
+    height: 40%;
+    background-color: khaki;
+    margin: 15px 25px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8vw;
+    box-shadow: 5px 5px 5px black;
+}
+
+.decksize{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+}
+
+.decksize div{
+    width: 18%;
+    height: 50%;
+    background-color: lightcoral;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vw;
+    margin-left: 25px;
+    box-shadow: 5px 5px 5px black;
+}
+
+.start{
+    width: 85%;
+    height: 20%;
+    background-color: blueviolet;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8vw;
+    margin: 0 auto;
+    box-shadow: 5px 5px 5px black;
+}
+
+.active{
+    border: 5px solid green;
+    box-sizing: border-box;
+}
+
+.cat:hover, .size:hover, .start:hover{
+    transform: scale(1.1);
+}
+
+/* Game screen */
+.game-screen{
+    width: 100%;
+    height: 98vh;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: minmax(100px, auto);
     grid-gap:1em;
     display: none;
-    /* background-image: url(img/ford.png); */
 }
 
 .div{
@@ -22,10 +98,9 @@
 }
 
 .card{
-    /* color: white; */
     perspective: 1000px;
     position: relative;
-    border-radius: 15%;
+    border-radius: 15px;
 }
 
 .front,.back{
@@ -39,17 +114,22 @@
     border-radius: 15%;
     transition: 1s;
     box-shadow: 5px 5px 5px black;
-    /* border: 1px solid white; */
 }
 
 .front{
-    background-image: url(back.jpg);
+    background-image: url(img/back.jpg);
 }
 
 .back{
     color: black;
     transform: rotateY(180deg);
     font-size: 35px;
+}
+
+img{
+    width: 100%;
+    height: auto;
+    border-radius: 15%;
 }
 
 .front-clicked{
@@ -64,79 +144,4 @@
     display: flex;
     align-items: center;
     height: 10vh;
-}
-
-.size-btn{
-    width: 50px;
-    height: 50px;
-    background-color: chocolate;
-    border-radius: 15%;
-    border: 1px solid black;
-    box-shadow: 5px 5px 5px black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    margin: 0 15px;
-}
-
-.size-btn:hover{
-    background-color: coral;
-    transform: scale(1.1);
-}
-
-img{
-    width: 100%;
-    height: auto;
-    border-radius: 15%;
-}
-
-.start-screen{
-    width: 70vw;
-    height: 100vh;
-    background-color: royalblue;
-    margin: 10px auto;
-}
-
-.options{
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    height: 12vh;
-    margin-left: 5%;
-}
-
-.btn{
-    width: 10vh;
-    height: 10vh;
-    background-color: brown;
-    /* box-shadow: 5px 5px 5px black; */
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-}
-
-.settings{
-    z-index: 2;
-    box-shadow: 5px 5px 5px black;
-}
-
-.slider{
-    width: 80%;
-    position: relative;
-    margin: auto;
-    height: 30%;
-    background-color: green;
-    display: flex;
-    margin-top: 15px;
-}
-
-.item{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: greenyellow;
 }
