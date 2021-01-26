@@ -8,34 +8,34 @@ firstCardInner = null
 secondCardInner = null
 
 const objects = [
-    {id: 0, cars: 'img/audi.png'},
-    {id: 1, cars: 'img/bmw.png'},
-    {id: 2, cars: 'img/bugatti.png'},
-    {id: 3, cars: 'img/chevrolet.png'},
-    {id: 4, cars: 'img/ferrari.png'},
-    {id: 5, cars: 'img/fiat.png'},
-    {id: 6, cars: 'img/ford.png'},
-    {id: 7, cars: 'img/honda.png'},
-    {id: 8, cars: 'img/hyundai.png'},
-    {id: 9, cars: 'img/infiniti.png'},
-    {id: 10, cars: 'img/jaguar.png'},
-    {id: 11, cars: 'img/lamborghini.png'},
-    {id: 12, cars: 'img/lexus.png'},
-    {id: 13, cars: 'img/mercedes.png'},
-    {id: 14, cars: 'img/mazda.png'},
-    {id: 15, cars: 'img/mg.png'},
-    {id: 16, cars: 'img/mini.png'},
-    {id: 17, cars: 'img/mitsubishi.png'},
-    {id: 18, cars: 'img/nissan.png'},
-    {id: 19, cars: 'img/opel.png'},
-    {id: 20, cars: 'img/porsche.png'},
-    {id: 21, cars: 'img/romeo.png'},
-    {id: 22, cars: 'img/rover.png'},
-    {id: 23, cars: 'img/subaru.png'},
-    {id: 24, cars: 'img/suzuki.png'},
-    {id: 25, cars: 'img/tesla.png'},
-    {id: 26, cars: 'img/toyota.png'},
-    {id: 27, cars: 'img/volkswagen.png'},
+    {id: 0, cars: 'img/audi.png', football: 'img/acm.png'},
+    {id: 1, cars: 'img/bmw.png', football: 'img/arsenal.png'},
+    {id: 2, cars: 'img/bugatti.png', football: 'img/atletico.png'},
+    {id: 3, cars: 'img/chevrolet.png', football: 'img/barca.png'},
+    {id: 4, cars: 'img/ferrari.png', football: 'img/bayern.png'},
+    {id: 5, cars: 'img/fiat.png', football: 'img/bvb.png'},
+    {id: 6, cars: 'img/ford.png', football: 'img/chelsea.png'},
+    {id: 7, cars: 'img/honda.png', football: 'img/everton.png'},
+    {id: 8, cars: 'img/hyundai.png', football: 'img/gent.png'},
+    {id: 9, cars: 'img/infiniti.png', football: 'img/inter.png'},
+    {id: 10, cars: 'img/jaguar.png', football: 'img/juventus.png'},
+    {id: 11, cars: 'img/lamborghini.png', football: 'img/leicester.png'},
+    {id: 12, cars: 'img/lexus.png', football: 'img/lion.png'},
+    {id: 13, cars: 'img/mercedes.png', football: 'img/liverpool.png'},
+    {id: 14, cars: 'img/mazda.png', football: 'img/psg.png'},
+    {id: 15, cars: 'img/mg.png', football: 'img/realmadrid.png'},
+    {id: 16, cars: 'img/mini.png', football: 'img/stutgard.png'},
+    {id: 17, cars: 'img/mitsubishi.png', football: 'img/torino.png'},
+    {id: 18, cars: 'img/nissan.png', football: 'img/tottenham.png'},
+    {id: 19, cars: 'img/opel.png', football: 'img/vilareal.png'},
+    {id: 20, cars: 'img/porsche.png', football: 'img/wolf.png'},
+    {id: 21, cars: 'img/romeo.png', football: 'img/loko.png'},
+    {id: 22, cars: 'img/rover.png', football: 'img/betis.png'},
+    {id: 23, cars: 'img/subaru.png', football: 'img/valencia.png'},
+    {id: 24, cars: 'img/suzuki.png', football: 'img/nice.png'},
+    {id: 25, cars: 'img/tesla.png', football: 'img/marsel.png'},
+    {id: 26, cars: 'img/toyota.png', football: 'img/standart.png'},
+    {id: 27, cars: 'img/volkswagen.png', football: 'img/lazio.png'},
     
 ]
 
@@ -143,7 +143,7 @@ function randomCardLocation(x){          //случайное расположе
             backs[randomNumber1].insertAdjacentHTML(
                 "afterbegin",
                 `
-                    <img src = "${objects[i].cars}">
+                    <img src = "${objects[i].football}">
                 `
             ) 
         }else{
@@ -151,7 +151,7 @@ function randomCardLocation(x){          //случайное расположе
             backs[randomNumber1].insertAdjacentHTML(
                 "afterbegin",
                 `
-                    <img src = "${objects[i].cars}">
+                    <img src = "${objects[i].football}">
                 `
             )
         }
@@ -164,7 +164,7 @@ function randomCardLocation(x){          //случайное расположе
             backs[randomNumber2].insertAdjacentHTML(
                 "afterbegin",
                 `
-                    <img src = "${objects[i].cars}">
+                    <img src = "${objects[i].football}">
                 `
             )
         }else{
@@ -172,7 +172,7 @@ function randomCardLocation(x){          //случайное расположе
             backs[randomNumber2].insertAdjacentHTML(
                 "afterbegin",
                 `
-                    <img src = "${objects[i].cars}">
+                    <img src = "${objects[i].football}">
                 `
             )
         }
