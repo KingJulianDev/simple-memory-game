@@ -25,7 +25,7 @@ const objects = [
     {id: 14, cars: 'img/mazda.png'},
     {id: 15, cars: 'img/mg.png'},
     {id: 16, cars: 'img/mini.png'},
-    {id: 17, cars: 'img/mitsubushi.png'},
+    {id: 17, cars: 'img/mitsubishi.png'},
     {id: 18, cars: 'img/nissan.png'},
     {id: 19, cars: 'img/opel.png'},
     {id: 20, cars: 'img/porsche.png'},
@@ -42,20 +42,33 @@ const objects = [
 let usedObjects = []          //использованые объекты 
 let usedCards = []
 
-/* sizeBtns.forEach((el) => {          //выбираем размер игрового поля
-    el.onclick = (event) => {
-        let id = (event.target.id)
-        if(gameScreen.children.length > 0){
-            Array.from(gameScreen.children).forEach((el) => {
-                el.remove()
-            })
-            usedObjects = []
-            checkDeskSize(id)
-        }else{
-            checkDeskSize(id)
+const next = document.querySelector('.next')
+const prev = document.querySelector('.prev')
+const items = document.querySelectorAll('.item')
+
+let indexOfCategorie = 0
+
+next.onclick = () => {
+    indexOfCategorie++
+    if(indexOfCategorie > items.length-1) indexOfCategorie = 0
+    showSlide()
+}
+
+prev.onclick = () => {
+    indexOfCategorie --
+    if(indexOfCategorie < 0) indexOfCategorie = items.length-1
+    showSlide()
+}
+
+function showSlide(){
+    items.forEach((el) => {
+        let classArr = Array.from(el.classList)
+        if(classArr.includes('active-slide')){
+            el.classList.remove('active-slide')
         }
-    }
-}) */
+    })
+    items[indexOfCategorie].classList.add('active-slide')
+}
 
 sizeBtns.forEach((el) => {
     el.onclick = (event) => {
@@ -93,23 +106,18 @@ function renderGameDesk(quantity) {            //рендерим игровое
 function checkDeskSize(quantity){         //подгоняем грид под количество карточек
     if(quantity === '12'){
         gameScreen.style.gridTemplateColumns = 'repeat(4, 1fr)'
-        //quantityOfCards = 12
         renderGameDesk(quantity)
     }else if(quantity === '20'){
         gameScreen.style.gridTemplateColumns = 'repeat(5, 1fr)'
-        //quantityOfCards = 20
         renderGameDesk(quantity)
     }else if(quantity === '30'){
         gameScreen.style.gridTemplateColumns = 'repeat(6, 1fr)'
-        //quantityOfCards = 30
         renderGameDesk(quantity)
     }else if(quantity === '42'){
         gameScreen.style.gridTemplateColumns = 'repeat(7, 1fr)'
-        //quantityOfCards = 42
         renderGameDesk(quantity)
     }else if(quantity === '4'){
         gameScreen.style.gridTemplateColumns = 'repeat(8, 1fr)'
-        //quantityOfCards = 56
         randerGameDesk(quantity)
     }
 }
