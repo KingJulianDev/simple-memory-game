@@ -3,7 +3,7 @@ const gameScreen = document.querySelector('.game-screen')
 const start = document.querySelector('.start')
 const startScreen = document.querySelector('.start-screen')
 
-let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, quantity
+let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, quantity, remainingCards
 firstCardInner = null
 secondCardInner = null
 
@@ -77,6 +77,8 @@ sizeBtns.forEach((el) => {
             el.classList.remove('active')
         })
         quantity = id
+        remainingCards = id/2
+        console.log(remainingCards)
         el.classList.add('active')
         console.log(quantity)
     }
@@ -202,15 +204,17 @@ function randomCardLocation(x){          //случайное расположе
 }
 
 function blockCards(){
-    cards.forEach((el) => {
+    /* cards.forEach((el) => {
         el.style.pointerEvents = 'none'
-    })
+    }) */
+    gameScreen.style.pointerEvents = 'none'
     setTimeout(function(){
-        cards.forEach((el) => {
+        /* cards.forEach((el) => {
             el.style.pointerEvents = 'all'
-        })
+        }) */
+        gameScreen.style.pointerEvents = 'all'
     },
-    1000)
+    1200)
 }
 
 function compareCards(){            //сравниваем карточки
@@ -225,6 +229,9 @@ function compareCards(){            //сравниваем карточки
             secondCardId = ''
             },
             500);
+        remainingCards--
+        console.log(remainingCards)
+        if(remainingCards === 0) alert('You won!')
     }else{
         blockCards()
         setTimeout(function(){          //карточки не совпали,переворачиваем назад

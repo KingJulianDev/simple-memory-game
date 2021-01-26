@@ -37,7 +37,7 @@
     box-shadow: 5px 5px 5px black;
 }
 
-.decksize{
+/* .decksize{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,10 +57,36 @@
     font-size: 5vw;
     margin-left: 25px;
     box-shadow: 5px 5px 5px black;
+} */
+
+.decksize{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 2vh;
+    box-sizing: border-box;
+}
+
+#mixed{
+    grid-column: 2/3;
+    grid-row: 1/3;
+    padding-left: 15px;
+}
+
+.decksize div{
+    background-color: lightcoral;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vw;
+    box-shadow: 5px 5px 5px black;
 }
 
 .start{
-    width: 85%;
+    width: 80%;
     height: 20vh;
     background-color: blueviolet;
     border-radius: 25px;
@@ -73,8 +99,7 @@
 }
 
 .active{
-    border: 5px solid green;
-    box-sizing: border-box;
+    background-color: green !important;
 }
 
 .cat:hover, .size:hover, .start:hover{
@@ -151,9 +176,9 @@
 
 .slider{
     position: relative;
-    width: 70%;
-    height: 55vh;
-    margin: 0 auto;
+    width: 80%;
+    height: 50vh;
+    margin: 3vh auto;
     background-color: cadetblue;
     border-radius: 15px;
     display: flex;
