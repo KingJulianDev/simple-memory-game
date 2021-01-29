@@ -3,7 +3,8 @@ const gameScreen = document.querySelector('.game-screen')
 const start = document.querySelector('.start')
 const startScreen = document.querySelector('.start-screen')
 
-let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, quantity, remainingCards
+let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, 
+quantity, remainingCards, nameOfCategorie
 firstCardInner = null
 secondCardInner = null
 
@@ -40,7 +41,7 @@ const objects = [
 ]
 
 let usedObjects = []          //использованые объекты 
-let usedCards = []
+let usedCards = []            //использованые карточки
 
 const next = document.querySelector('.next')
 const prev = document.querySelector('.prev')
@@ -124,58 +125,51 @@ function checkDeskSize(quantity){         //подгоняем грид под �
     }
 }
 
-function randomCardLocation(x){          //случайное расположение карточек
+function randomCardLocation(x){          //случайное расположение картинок
     cards = Array.from(document.querySelectorAll('.card'))
     fronts = Array.from(document.querySelectorAll('.front'))
-    backs = Array.from(document.querySelectorAll('.back'))
+    backs = Array.from(document.querySelectorAll('.back'));
+    
+    (indexOfCategorie === 0) ? nameOfCategorie = 'cartoons' :
+    (indexOfCategorie === 1) ? nameOfCategorie = 'flags' :
+    (indexOfCategorie === 2) ? nameOfCategorie = 'cars' :
+    nameOfCategorie = 'football';
+    
+    
 
-    console.log(x)
+    function addImage(i){
+
+    let randomNumber1, randomNumber2
+
+        do {
+            randomNumber1 = Math.floor(Math.random()*x)
+        } while (usedCards.includes(randomNumber1) === true);
+        usedCards.push(randomNumber1)
+
+        do {
+            randomNumber2 = Math.floor(Math.random()*x)
+        } while (usedCards.includes(randomNumber2) === true);
+        usedCards.push(randomNumber2)
+
+        backs[randomNumber1].insertAdjacentHTML(            //добавляем img к первой карточке и ...
+            "afterbegin",
+            `
+                <img src = "${objects[i][nameOfCategorie]}">
+            `
+        )
+
+        backs[randomNumber2].insertAdjacentHTML(            //...добавляем ко второй
+            "afterbegin",
+            `
+                <img src = "${objects[i][nameOfCategorie]}">
+            `
+        )
+    }
+
+    
 
     for (let i = 0; i < x/2; i++) {
-        let randomNumber1 = Math.floor(Math.random()*x)
-        let randomNumber2 = Math.floor(Math.random()*x)
-
-        if(usedObjects.includes(randomNumber1) === true){
-            while(usedObjects.includes(randomNumber1) === true){
-                randomNumber1 = Math.floor(Math.random()*x)
-            }
-            usedObjects.push(randomNumber1)
-            backs[randomNumber1].insertAdjacentHTML(
-                "afterbegin",
-                `
-                    <img src = "${objects[i].football}">
-                `
-            ) 
-        }else{
-            usedObjects.push(randomNumber1)
-            backs[randomNumber1].insertAdjacentHTML(
-                "afterbegin",
-                `
-                    <img src = "${objects[i].football}">
-                `
-            )
-        }
-
-        if(usedObjects.includes(randomNumber2) === true){
-            while(usedObjects.includes(randomNumber2) === true){
-                randomNumber2 = Math.floor(Math.random()*x)
-            }
-            usedObjects.push(randomNumber2)
-            backs[randomNumber2].insertAdjacentHTML(
-                "afterbegin",
-                `
-                    <img src = "${objects[i].football}">
-                `
-            )
-        }else{
-            usedObjects.push(randomNumber2)
-            backs[randomNumber2].insertAdjacentHTML(
-                "afterbegin",
-                `
-                    <img src = "${objects[i].football}">
-                `
-            )
-        }
+        addImage(i)
     }
 
     cards.forEach((el) => {
@@ -204,14 +198,8 @@ function randomCardLocation(x){          //случайное расположе
 }
 
 function blockCards(){
-    /* cards.forEach((el) => {
-        el.style.pointerEvents = 'none'
-    }) */
     gameScreen.style.pointerEvents = 'none'
     setTimeout(function(){
-        /* cards.forEach((el) => {
-            el.style.pointerEvents = 'all'
-        }) */
         gameScreen.style.pointerEvents = 'all'
     },
     1200)
@@ -249,29 +237,3 @@ function compareCards(){            //сравниваем карточки
             1000);
     }
 }
-
-/* const categories = document.querySelector('.categories')
-const size = document.querySelector('.size')
-const themes = document.querySelector('.themes')
-const options = document.querySelector('.options')
-const settings = document.querySelector('.settings')
-
-settings.onclick = () => {
-    let i = 0
-    let j = 0
-    let y = 0
-    let animation = setInterval(() => {
-        i += 7
-        j += 14
-        y += 21
-        size.style.left = i + 'px'
-        themes.style.left = j + 'px'
-        categories.style.left = y + 'px'
-        size.style.boxShadow = '5px 5px 5px black'
-        themes.style.boxShadow = '5px 5px 5px black'
-        categories.style.boxShadow = '5px 5px 5px black'
-    }, 20);
-    setTimeout(() => {
-        clearInterval(animation)
-    }, 300);
-} */
