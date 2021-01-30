@@ -18,6 +18,7 @@ body{
     height: 100vh;
     background-color: royalblue;
     margin: 0 auto;
+    padding-top: 1vh;
 }
 
 .categories{
@@ -41,35 +42,13 @@ body{
     box-shadow: 5px 5px 5px black;
 }
 
-/* .decksize{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70%;
-    height: 20vh;
-    margin: 0 auto;
-}
-.decksize div{
-    width: 18%;
-    height: 80%;
-    background-color: lightcoral;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5vw;
-    margin-left: 25px;
-    box-shadow: 5px 5px 5px black;
-} */
-
 .decksize{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
-    height: 25vh;
+    height: 30vh;
     width: 80%;
-    margin: 0 auto;
-    padding-top: 2vh;
+    margin: 0 auto 2vh auto;
     box-sizing: border-box;
 }
 
@@ -86,7 +65,9 @@ body{
     justify-content: center;
     align-items: center;
     font-size: 5vw;
+    border: 1px solid black;
     box-shadow: 5px 5px 5px black;
+    transition: .5s;
 }
 
 .start{
@@ -94,21 +75,26 @@ body{
     height: 20vh;
     background-color: orangered;
     border-radius: 25px;
+    border: 1px solid black;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 8vw;
-    margin: 0 auto 3vh auto;
+    margin: 0 auto 1vh auto;
     box-shadow: 5px 5px 5px black;
+    transition: .5s;
 }
 
 .active{
     background-color: orange !important;
+    transform: scale(0.9);
+    box-shadow: none !important;
 }
 
 .cat:hover, .size:hover, .start:hover{
-    transform: scale(1.1);
-    box-shadow: 10px 10px 10px black;
+    transform: scale(0.9);
+    box-shadow: 2px 2px 2px black;
 }
 
 /* Game screen */
@@ -123,16 +109,15 @@ body{
     display: none;
 }
 
-/* .div{
-    width: 100px;
-    height: 100px;
-    background-color: yellow;
-} */
-
 .card{
     perspective: 1000px;
     position: relative;
     border-radius: 15px;
+    transition: .5s;
+}
+
+.card:hover{
+    transform: scale(0.9);
 }
 
 .front,.back{
@@ -182,8 +167,8 @@ body{
 .slider{
     position: relative;
     width: 80%;
-    height: 42vh;
-    margin: 8vh auto 3vh auto;
+    height: 44vh;
+    margin: 0 auto 2vh auto;
     background-color: cadetblue;
     border-radius: 15px;
     display: flex;
