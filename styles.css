@@ -92,7 +92,7 @@ body{
     box-shadow: none !important;
 }
 
-.cat:hover, .size:hover, .start:hover{
+.cat:hover, .size:hover, .start:hover, #mixed:hover{
     transform: scale(0.9);
     box-shadow: 2px 2px 2px black;
 }

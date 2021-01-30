@@ -2,11 +2,13 @@ const sizeBtns = Array.from(document.querySelectorAll('.size'))
 const gameScreen = document.querySelector('.game-screen')
 const start = document.querySelector('.start')
 const startScreen = document.querySelector('.start-screen')
+const mixedMode = document.getElementById('mixed')
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, 
-quantity, remainingCards, nameOfCategorie
+quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive
 firstCardInner = null
 secondCardInner = null
+isMixedModeActive = false
 
 const objects = [
     {id: 0, cars: 'img/audi.png', football: 'img/acm.png'},
@@ -71,6 +73,12 @@ function showSlide(){
     items[indexOfCategorie].classList.add('active-slide')
 }
 
+mixedMode.onclick = () => {
+    isMixedModeActive = !isMixedModeActive;
+    (isMixedModeActive === true) ? mixedMode.classList.add('active') :
+    mixedMode.classList.remove('active');
+}
+
 sizeBtns.forEach((el) => {
     el.onclick = (event) => {
         let id = (event.target.id)
@@ -79,9 +87,7 @@ sizeBtns.forEach((el) => {
         })
         quantity = id
         remainingCards = id/2
-        console.log(remainingCards)
         el.classList.add('active')
-        console.log(quantity)
     }
 })
 
@@ -135,7 +141,15 @@ function randomCardLocation(x){          //случайное расположе
     (indexOfCategorie === 2) ? nameOfCategorie = 'cars' :
     nameOfCategorie = 'football';
     
-    
+    let selectedItems = []
+    let randomNumber
+    for (let i = 0; i < x/2; i++) {
+        do {
+            randomNumber = Math.floor(Math.random() * objects.length)
+        } while (selectedItems.includes(randomNumber));
+        selectedItems.push(objects[randomNumber])
+    }
+    console.log(selectedItems)
 
     function addImage(i){
 
@@ -154,14 +168,14 @@ function randomCardLocation(x){          //случайное расположе
         backs[randomNumber1].insertAdjacentHTML(            //добавляем img к первой карточке и ...
             "afterbegin",
             `
-                <img src = "${objects[i][nameOfCategorie]}">
+                <img src = "${selectedItems[i][nameOfCategorie]}">
             `
         )
 
         backs[randomNumber2].insertAdjacentHTML(            //...добавляем ко второй
             "afterbegin",
             `
-                <img src = "${objects[i][nameOfCategorie]}">
+                <img src = "${selectedItems[i][nameOfCategorie]}">
             `
         )
     }
