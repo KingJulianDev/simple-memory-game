@@ -146,14 +146,14 @@ function randomCardLocation(x){          //случайное расположе
     for (let i = 0; i < x/2; i++) {
         do {
             randomNumber = Math.floor(Math.random() * objects.length)
-        } while (selectedItems.includes(randomNumber));
+        } while (selectedItems.includes(objects[randomNumber]) === true);
         selectedItems.push(objects[randomNumber])
     }
     console.log(selectedItems)
 
     function addImage(i){
 
-    let randomNumber1, randomNumber2
+    let randomNumber1, randomNumber2, randomCategorie
 
         do {
             randomNumber1 = Math.floor(Math.random()*x)
