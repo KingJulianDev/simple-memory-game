@@ -11,34 +11,34 @@ secondCardInner = null
 isMixedModeActive = false
 
 const objects = [
-    {id: 0, cars: 'img/audi.png', football: 'img/acm.png'},
-    {id: 1, cars: 'img/bmw.png', football: 'img/arsenal.png'},
-    {id: 2, cars: 'img/bugatti.png', football: 'img/atletico.png'},
-    {id: 3, cars: 'img/chevrolet.png', football: 'img/barca.png'},
-    {id: 4, cars: 'img/ferrari.png', football: 'img/bayern.png'},
-    {id: 5, cars: 'img/fiat.png', football: 'img/bvb.png'},
-    {id: 6, cars: 'img/ford.png', football: 'img/chelsea.png'},
-    {id: 7, cars: 'img/honda.png', football: 'img/everton.png'},
-    {id: 8, cars: 'img/hyundai.png', football: 'img/gent.png'},
-    {id: 9, cars: 'img/infiniti.png', football: 'img/inter.png'},
-    {id: 10, cars: 'img/jaguar.png', football: 'img/juventus.png'},
-    {id: 11, cars: 'img/lamborghini.png', football: 'img/leicester.png'},
-    {id: 12, cars: 'img/lexus.png', football: 'img/lion.png'},
-    {id: 13, cars: 'img/mercedes.png', football: 'img/liverpool.png'},
-    {id: 14, cars: 'img/mazda.png', football: 'img/psg.png'},
-    {id: 15, cars: 'img/mg.png', football: 'img/realmadrid.png'},
-    {id: 16, cars: 'img/mini.png', football: 'img/stutgard.png'},
-    {id: 17, cars: 'img/mitsubishi.png', football: 'img/torino.png'},
-    {id: 18, cars: 'img/nissan.png', football: 'img/tottenham.png'},
-    {id: 19, cars: 'img/opel.png', football: 'img/vilareal.png'},
-    {id: 20, cars: 'img/porsche.png', football: 'img/wolf.png'},
-    {id: 21, cars: 'img/romeo.png', football: 'img/loko.png'},
-    {id: 22, cars: 'img/rover.png', football: 'img/betis.png'},
-    {id: 23, cars: 'img/subaru.png', football: 'img/valencia.png'},
-    {id: 24, cars: 'img/suzuki.png', football: 'img/nice.png'},
-    {id: 25, cars: 'img/tesla.png', football: 'img/marsel.png'},
-    {id: 26, cars: 'img/toyota.png', football: 'img/standart.png'},
-    {id: 27, cars: 'img/volkswagen.png', football: 'img/lazio.png'},
+    {id: 0, cars: 'img/audi.png', football: 'img/acm.png', cartoons: 'img/bak.png'},
+    {id: 1, cars: 'img/bmw.png', football: 'img/arsenal.png', cartoons: 'img/belka.png'},
+    {id: 2, cars: 'img/bugatti.png', football: 'img/atletico.png', cartoons: 'img/blitz.png'},
+    {id: 3, cars: 'img/chevrolet.png', football: 'img/barca.png', cartoons: 'img/bull.png'},
+    {id: 4, cars: 'img/ferrari.png', football: 'img/bayern.png', cartoons: 'img/burunduk.png'},
+    {id: 5, cars: 'img/fiat.png', football: 'img/bvb.png', cartoons: 'img/cars.png'},
+    {id: 6, cars: 'img/ford.png', football: 'img/chelsea.png', cartoons: 'img/chaika.png'},
+    {id: 7, cars: 'img/honda.png', football: 'img/everton.png', cartoons: 'img/doris.png'},
+    {id: 8, cars: 'img/hyundai.png', football: 'img/gent.png', cartoons: 'img/dragon.png'},
+    {id: 9, cars: 'img/infiniti.png', football: 'img/inter.png', cartoons: 'img/emocii.png'},
+    {id: 10, cars: 'img/jaguar.png', football: 'img/juventus.png', cartoons: 'img/emojif.png'},
+    {id: 11, cars: 'img/lamborghini.png', football: 'img/leicester.png', cartoons: 'img/emojigivefive.png'},
+    {id: 12, cars: 'img/lexus.png', football: 'img/lion.png', cartoons: 'img/filex.png'},
+    {id: 13, cars: 'img/mercedes.png', football: 'img/liverpool.png', cartoons: 'img/frozen.png'},
+    {id: 14, cars: 'img/mazda.png', football: 'img/psg.png', cartoons: 'img/lenivec.png'},
+    {id: 15, cars: 'img/mg.png', football: 'img/realmadrid.png', cartoons: 'img/masha.png'},
+    {id: 16, cars: 'img/mini.png', football: 'img/stutgard.png', cartoons: 'img/moana.png'},
+    {id: 17, cars: 'img/mitsubishi.png', football: 'img/torino.png', cartoons: 'img/nemo.png'},
+    {id: 18, cars: 'img/nissan.png', football: 'img/tottenham.png', cartoons: 'img/olaf.png'},
+    {id: 19, cars: 'img/opel.png', football: 'img/vilareal.png', cartoons: 'img/oldcar.png'},
+    {id: 20, cars: 'img/porsche.png', football: 'img/wolf.png', cartoons: 'img/ralph.png'},
+    {id: 21, cars: 'img/romeo.png', football: 'img/loko.png', cartoons: 'img/rapuncel.png'},
+    {id: 22, cars: 'img/rover.png', football: 'img/betis.png', cartoons: 'img/tiger.png'},
+    {id: 23, cars: 'img/subaru.png', football: 'img/valencia.png', cartoons: 'img/tigress.png'},
+    {id: 24, cars: 'img/suzuki.png', football: 'img/nice.png', cartoons: 'img/venelopa.png'},
+    {id: 25, cars: 'img/tesla.png', football: 'img/marsel.png', cartoons: 'img/white.png'},
+    {id: 26, cars: 'img/toyota.png', football: 'img/standart.png', cartoons: 'img/zootiger.png'},
+    {id: 27, cars: 'img/volkswagen.png', football: 'img/lazio.png', cartoons: 'img/zootopia.png'},
     
 ]
 
@@ -188,7 +188,7 @@ function randomCardLocation(x){          //случайное расположе
             return Math.floor(rand);
         }
         for (let i = 0; i < x/2; i++) {
-            let y = getRandomCategorie(1,2)
+            let y = getRandomCategorie(1,3)
             let randomCategorie = Object.keys(selectedItems[i])[y]
             console.log(randomCategorie)
             addImage(i, randomCategorie)
