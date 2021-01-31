@@ -99,7 +99,6 @@ start.onclick = () => {
 
 function renderGameDesk(quantity) {            //рендерим игровое поле 
     for(let i = 0; i < quantity; i++){
-        //<img src=${objects[i].cars}>
     gameScreen.insertAdjacentHTML("beforeend",
     `
     <div class="card">
@@ -149,11 +148,10 @@ function randomCardLocation(x){          //случайное расположе
         } while (selectedItems.includes(objects[randomNumber]) === true);
         selectedItems.push(objects[randomNumber])
     }
-    console.log(selectedItems)
 
-    function addImage(i){
-
-    let randomNumber1, randomNumber2, randomCategorie
+    function addImage(i, mode){             //рандомно добавляем картинки к карточкам
+        
+    let randomNumber1, randomNumber2
 
         do {
             randomNumber1 = Math.floor(Math.random()*x)
@@ -168,23 +166,36 @@ function randomCardLocation(x){          //случайное расположе
         backs[randomNumber1].insertAdjacentHTML(            //добавляем img к первой карточке и ...
             "afterbegin",
             `
-                <img src = "${selectedItems[i][nameOfCategorie]}">
+                <img src = "${selectedItems[i][mode]}">
             `
         )
 
         backs[randomNumber2].insertAdjacentHTML(            //...добавляем ко второй
             "afterbegin",
             `
-                <img src = "${selectedItems[i][nameOfCategorie]}">
+                <img src = "${selectedItems[i][mode]}">
             `
         )
     }
 
-    
-
-    for (let i = 0; i < x/2; i++) {
-        addImage(i)
+    if(isMixedModeActive === false){            //рендеринг картинок в зависимости от режима
+        for (let i = 0; i < x/2; i++) {
+            addImage(i, nameOfCategorie)
+        }
+    }else{
+        function getRandomCategorie(min, max) {
+            let rand = min + Math.random() * (max + 1 - min);
+            return Math.floor(rand);
+        }
+        for (let i = 0; i < x/2; i++) {
+            let y = getRandomCategorie(1,2)
+            let randomCategorie = Object.keys(selectedItems[i])[y]
+            console.log(randomCategorie)
+            addImage(i, randomCategorie)
+        }
     }
+
+    
 
     cards.forEach((el) => {
         el.onclick = (event) => {           //вешаем онКлики на карточки
@@ -232,7 +243,6 @@ function compareCards(){            //сравниваем карточки
             },
             500);
         remainingCards--
-        console.log(remainingCards)
         if(remainingCards === 0) alert('You won!')
     }else{
         blockCards()
