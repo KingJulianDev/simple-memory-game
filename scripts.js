@@ -3,9 +3,10 @@ const gameScreen = document.querySelector('.game-screen')
 const start = document.querySelector('.start')
 const startScreen = document.querySelector('.start-screen')
 const mixedMode = document.getElementById('mixed')
+const desk = document.querySelector('.desk')
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, 
-quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive
+quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive, home/* , selectedItems, randomNumber */
 firstCardInner = null
 secondCardInner = null
 isMixedModeActive = false
@@ -81,6 +82,7 @@ mixedMode.onclick = () => {
 
 sizeBtns.forEach((el) => {
     el.onclick = (event) => {
+        start.style.pointerEvents = 'all'
         let id = (event.target.id)
         sizeBtns.forEach((el) => {
             el.classList.remove('active')
@@ -91,15 +93,52 @@ sizeBtns.forEach((el) => {
     }
 })
 
-start.onclick = () => {
+function gameLoop() {
     startScreen.style.display = 'none'
-    gameScreen.style.display = 'grid'
+    usedCards = []
+    firstCardInner = null
+    /* idOfElement = '' */
     checkDeskSize(quantity)
+}
+
+home = document.querySelector('.home')
+home.onclick = () => {
+    startScreen.style.display = 'block'
+    if(desk.firstChild){
+        while (desk.firstChild) {
+            desk.removeChild(desk.firstChild);
+            }
+    }
+    console.dir(quantity)
+    desk.removeAttribute("style")
+}
+
+start.onclick = () => {
+    gameLoop()
+}
+
+function checkDeskSize(quantity){         //подгоняем грид под количество карточек
+    if(quantity === '12'){
+        desk.style.gridTemplateColumns = 'repeat(4, 1fr)'
+        renderGameDesk(quantity)
+    }else if(quantity === '20'){
+        desk.style.gridTemplateColumns = 'repeat(5, 1fr)'
+        renderGameDesk(quantity)
+    }else if(quantity === '30'){
+        desk.style.gridTemplateColumns = 'repeat(6, 1fr)'
+        renderGameDesk(quantity)
+    }else if(quantity === '40'){
+        desk.style.gridTemplateColumns = 'repeat(8, 1fr)'
+        renderGameDesk(quantity)
+    }else if(quantity === '4'){
+        desk.style.gridTemplateColumns = 'repeat(8, 1fr)'
+        randerGameDesk(quantity)
+    }
 }
 
 function renderGameDesk(quantity) {            //рендерим игровое поле 
     for(let i = 0; i < quantity; i++){
-    gameScreen.insertAdjacentHTML("beforeend",
+    desk.insertAdjacentHTML("beforeend",
     `
     <div class="card">
         <div class="front"></div>
@@ -109,25 +148,6 @@ function renderGameDesk(quantity) {            //рендерим игровое
     )
     }
     randomCardLocation(quantity)
-}
-
-function checkDeskSize(quantity){         //подгоняем грид под количество карточек
-    if(quantity === '12'){
-        gameScreen.style.gridTemplateColumns = 'repeat(4, 1fr)'
-        renderGameDesk(quantity)
-    }else if(quantity === '20'){
-        gameScreen.style.gridTemplateColumns = 'repeat(5, 1fr)'
-        renderGameDesk(quantity)
-    }else if(quantity === '30'){
-        gameScreen.style.gridTemplateColumns = 'repeat(6, 1fr)'
-        renderGameDesk(quantity)
-    }else if(quantity === '42'){
-        gameScreen.style.gridTemplateColumns = 'repeat(7, 1fr)'
-        renderGameDesk(quantity)
-    }else if(quantity === '4'){
-        gameScreen.style.gridTemplateColumns = 'repeat(8, 1fr)'
-        randerGameDesk(quantity)
-    }
 }
 
 function randomCardLocation(x){          //случайное расположение картинок
@@ -190,7 +210,6 @@ function randomCardLocation(x){          //случайное расположе
         for (let i = 0; i < x/2; i++) {
             let y = getRandomCategorie(1,3)
             let randomCategorie = Object.keys(selectedItems[i])[y]
-            console.log(randomCategorie)
             addImage(i, randomCategorie)
         }
     }
