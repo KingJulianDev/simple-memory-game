@@ -4,9 +4,11 @@ const start = document.querySelector('.start')
 const startScreen = document.querySelector('.start-screen')
 const mixedMode = document.getElementById('mixed')
 const desk = document.querySelector('.desk')
+const home = document.querySelector('.home')
+const restart = document.querySelector('.restart')
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, 
-quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive, home/* , selectedItems, randomNumber */
+quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive/* , selectedItems, randomNumber */
 firstCardInner = null
 secondCardInner = null
 isMixedModeActive = false
@@ -99,16 +101,23 @@ function gameLoop() {
     firstCardInner = null
     /* idOfElement = '' */
     checkDeskSize(quantity)
+    remainingCards = quantity/2
 }
 
-home = document.querySelector('.home')
+restart.onclick = () => {
+    while (desk.firstChild) {
+        desk.removeChild(desk.firstChild);
+    }
+    gameLoop()
+}
+
 home.onclick = () => {
     startScreen.style.display = 'block'
     if(desk.firstChild){
         while (desk.firstChild) {
             desk.removeChild(desk.firstChild);
             }
-    }
+        }
     console.dir(quantity)
     desk.removeAttribute("style")
 }
