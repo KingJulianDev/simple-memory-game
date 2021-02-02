@@ -6,9 +6,10 @@ const mixedMode = document.getElementById('mixed')
 const desk = document.querySelector('.desk')
 const home = document.querySelector('.home')
 const restart = document.querySelector('.restart')
+const time = document.querySelector('.time')
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, 
-quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive/* , selectedItems, randomNumber */
+quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive, timer
 firstCardInner = null
 secondCardInner = null
 isMixedModeActive = false
@@ -43,6 +44,13 @@ const objects = [
     {id: 26, cars: 'img/toyota.png', football: 'img/standart.png', cartoons: 'img/zootiger.png'},
     {id: 27, cars: 'img/volkswagen.png', football: 'img/lazio.png', cartoons: 'img/zootopia.png'},
     
+]
+
+const records = [
+    {name: '12', time: '0:0', attempts: '100'},
+    {name: '20', time: '0:1', attempts: '100'},
+    {name: '30', time: '0:2', attempts: '100'},
+    {name: '42', time: '0:3', attempts: '100'},
 ]
 
 let usedObjects = []          //использованые объекты 
@@ -99,7 +107,6 @@ function gameLoop() {
     startScreen.style.display = 'none'
     usedCards = []
     firstCardInner = null
-    /* idOfElement = '' */
     checkDeskSize(quantity)
     remainingCards = quantity/2
 }
@@ -123,7 +130,21 @@ home.onclick = () => {
 }
 
 start.onclick = () => {
+    let minutes = 0
+    let seconds = 0
+    time.innerHTML = `${minutes}:${seconds}`
     gameLoop()
+     
+    timer = setInterval(function(){
+        seconds++
+        if(seconds === 60) {
+            minutes++
+            seconds = 0
+        }
+        time.innerHTML = `${minutes}:${seconds}`    
+    },
+    1000)
+
 }
 
 function checkDeskSize(quantity){         //подгоняем грид под количество карточек
@@ -271,7 +292,31 @@ function compareCards(){            //сравниваем карточки
             },
             500);
         remainingCards--
-        if(remainingCards === 0) alert('You won!')
+        if(remainingCards === 0){
+            clearInterval(timer);
+            let finalTime = time.innerHTML;
+            console.log('final time is ' + finalTime);
+
+            (quantity === '12') ? recordCheck(0) :
+            (quantity === '20') ? recordCheck(1) :
+            (quantity === '30') ? recordCheck(2) :
+            recordCheck(3);
+            
+            console.log('до побития рекорда0 ' + records[0].time)
+            console.log('до побития рекорда1 ' + records[1].time)
+            console.log('до побития рекорда2 ' + records[2].time)
+            console.log('до побития рекорда3 ' + records[3].time)
+
+        function recordCheck(n){
+            if(records[n].time > finalTime){
+                console.log('вы побили рекорд по времени!гг вп')
+                records[n].time = finalTime
+            }else{
+                console.log(`победа, твое время ${finalTime}`)
+            }
+        }
+            
+        }
     }else{
         blockCards()
         setTimeout(function(){          //карточки не совпали,переворачиваем назад
@@ -288,4 +333,22 @@ function compareCards(){            //сравниваем карточки
             },
             1000);
     }
+};
+
+let a = '0:0'
+let b = '0:20'
+
+if(a > b){
+    console.log('0:0 > 0:20')
+}else{
+    console.log('0:20 > 0:0')
 }
+
+function kek() {
+    console.log(records[0].time)
+    console.log(records[1].time)
+    console.log(records[2].time)
+    console.log(records[3].time)    
+}
+
+kek()
