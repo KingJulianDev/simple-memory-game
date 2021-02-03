@@ -46,12 +46,14 @@ const objects = [
     
 ]
 
-const records = [
-    {name: '12', time: '9:99', attempts: '100'},
-    {name: '20', time: '9:99', attempts: '100'},
-    {name: '30', time: '9:99', attempts: '100'},
-    {name: '42', time: '9:99', attempts: '100'},
-]
+if(localStorage.length === 0){
+    localStorage.setItem('records', JSON.stringify(records = [
+        {name: '12', time: '9:99', attempts: '100'},
+        {name: '20', time: '9:99', attempts: '100'},
+        {name: '30', time: '9:99', attempts: '100'},
+        {name: '42', time: '9:99', attempts: '100'},
+    ]))
+}
 
 let usedObjects = []          //использованые объекты 
 let usedCards = []            //использованые карточки
@@ -143,7 +145,6 @@ home.onclick = () => {
             desk.removeChild(desk.firstChild);
             }
         }
-    console.dir(quantity)
     desk.removeAttribute("style")
 }
 
@@ -307,6 +308,7 @@ function compareCards(){            //сравниваем карточки
             recordCheck(3);
 
         function recordCheck(n){                //если рекорд был побит то заносим инфу в рекорды
+            let records = JSON.parse(localStorage.getItem('records'))
             if(records[n].time > finalTime){
                 console.log(`${finalTime} Новый рекорд по времени!`)
                 records[n].time = finalTime
@@ -335,28 +337,17 @@ function compareCards(){            //сравниваем карточки
     }
 };
 
-/* let a = '0:0'
-let b = '0:20'
+/* let kek 
+kek = localStorage.getItem('records')
+let pek = JSON.parse(kek)
+pek[0].time = '0:72'
+console.log(pek) */
 
-if(a > b){
-    console.log('0:20 < 0:0')
-}else{
-    console.log('0:20 > 0:0')
-}
+/* let kek 
+kek = JSON.parse(localStorage.getItem('records'))
+console.log(kek) */
 
-function kek() {
-    console.log(records[0].time)
-    console.log(records[1].time)
-    console.log(records[2].time)
-    console.log(records[3].time)    
-}
-
-kek() */
-let a = '00:00'
-let b = '0:50'
-
-if(a > b) {
-    console.log(`${a} > ${b}`)
-}else{
-    console.log(`${b} > ${a}`)
-}
+/* let l = JSON.parse(localStorage.getItem('records'))
+l[0].time = '0:25'
+localStorage.setItem('records', JSON.stringify(l))
+console.log(l) */
