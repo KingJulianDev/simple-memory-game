@@ -7,9 +7,10 @@ const desk = document.querySelector('.desk')
 const home = document.querySelector('.home')
 const restart = document.querySelector('.restart')
 const time = document.querySelector('.time')
+const movesScreen = document.querySelector('.moves') 
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, 
-quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive, timer
+quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive, timer, moves
 firstCardInner = null
 secondCardInner = null
 isMixedModeActive = false
@@ -48,10 +49,10 @@ const objects = [
 
 if(localStorage.length === 0){
     localStorage.setItem('records', JSON.stringify(records = [
-        {name: '12', time: '9:99', attempts: '100'},
-        {name: '20', time: '9:99', attempts: '100'},
-        {name: '30', time: '9:99', attempts: '100'},
-        {name: '42', time: '9:99', attempts: '100'},
+        {name: '12', time: '9:99', attempts: '555'},
+        {name: '20', time: '9:99', attempts: '555'},
+        {name: '30', time: '9:99', attempts: '555'},
+        {name: '42', time: '9:99', attempts: '555'},
     ]))
 }
 
@@ -133,12 +134,14 @@ restart.onclick = () => {
         desk.removeChild(desk.firstChild);
     }
     gameLoop()
-
+    clearInterval(timer)
     timerFn()
-     
+    moves = 0
+    movesScreen.innerHTML = `Moves: ${moves}`
 }
 
 home.onclick = () => {
+    clearInterval(timer)
     startScreen.style.display = 'block'
     if(desk.firstChild){
         while (desk.firstChild) {
@@ -151,6 +154,8 @@ home.onclick = () => {
 start.onclick = () => {
     gameLoop()
     timerFn()
+    moves = 0
+    movesScreen.innerHTML = `Moves: ${moves}`
 }
 
 function checkDeskSize(quantity){         //подгоняем грид под количество карточек
@@ -298,6 +303,8 @@ function compareCards(){            //сравниваем карточки
             },
             500);
         remainingCards--
+        moves ++
+        movesScreen.innerHTML = `Moves: ${moves}`
         if(remainingCards === 0){
             clearInterval(timer);
             let finalTime = time.innerHTML;
@@ -320,6 +327,8 @@ function compareCards(){            //сравниваем карточки
             
         }
     }else{
+        moves ++
+        movesScreen.innerHTML = `Moves: ${moves}`
         blockCards()
         setTimeout(function(){          //карточки не совпали,переворачиваем назад
             fronts[firstCardId].classList.remove('front-clicked')
