@@ -49,10 +49,10 @@ const objects = [
 
 if(localStorage.length === 0){
     localStorage.setItem('records', JSON.stringify(records = [
-        {name: '12', time: '9:99', attempts: '555'},
-        {name: '20', time: '9:99', attempts: '555'},
-        {name: '30', time: '9:99', attempts: '555'},
-        {name: '42', time: '9:99', attempts: '555'},
+        {cards: '12', time: '9:99', moves: '555'},
+        {cards: '20', time: '9:99', moves: '555'},
+        {cards: '30', time: '9:99', moves: '555'},
+        {cards: '42', time: '9:99', moves: '555'},
     ]))
 }
 
@@ -323,6 +323,13 @@ function compareCards(){            //сравниваем карточки
             }else{
                 console.log(`Победа, твое время ${finalTime}!`)
             }
+            if(records[n].moves > moves){
+                console.log(`${moves} Новый рекорд по ходам!`)
+                records[n].moves = moves
+                localStorage.setItem('records', JSON.stringify(records))
+            }else{
+                console.log(`Победа, ты справился за ${finalTime} ходов!`)
+            }
         }
             
         }
@@ -345,18 +352,3 @@ function compareCards(){            //сравниваем карточки
             1000);
     }
 };
-
-/* let kek 
-kek = localStorage.getItem('records')
-let pek = JSON.parse(kek)
-pek[0].time = '0:72'
-console.log(pek) */
-
-/* let kek 
-kek = JSON.parse(localStorage.getItem('records'))
-console.log(kek) */
-
-/* let l = JSON.parse(localStorage.getItem('records'))
-l[0].time = '0:25'
-localStorage.setItem('records', JSON.stringify(l))
-console.log(l) */
