@@ -47,10 +47,10 @@ const objects = [
 ]
 
 const records = [
-    {name: '12', time: '0:0', attempts: '100'},
-    {name: '20', time: '0:1', attempts: '100'},
-    {name: '30', time: '0:2', attempts: '100'},
-    {name: '42', time: '0:3', attempts: '100'},
+    {name: '12', time: '9:99', attempts: '100'},
+    {name: '20', time: '9:99', attempts: '100'},
+    {name: '30', time: '9:99', attempts: '100'},
+    {name: '42', time: '9:99', attempts: '100'},
 ]
 
 let usedObjects = []          //использованые объекты 
@@ -111,11 +111,29 @@ function gameLoop() {
     remainingCards = quantity/2
 }
 
+function timerFn() {
+    let minutes = 0
+    let seconds = 0
+    time.innerHTML = `${minutes}:${seconds}`
+    timer = setInterval(function(){
+        seconds++
+        if(seconds === 60) {
+            minutes++
+            seconds = 0
+        }
+        time.innerHTML = `${minutes}:${seconds}`    
+    },
+    1000)
+}
+
 restart.onclick = () => {
     while (desk.firstChild) {
         desk.removeChild(desk.firstChild);
     }
     gameLoop()
+
+    timerFn()
+     
 }
 
 home.onclick = () => {
@@ -130,21 +148,8 @@ home.onclick = () => {
 }
 
 start.onclick = () => {
-    let minutes = 0
-    let seconds = 0
-    time.innerHTML = `${minutes}:${seconds}`
     gameLoop()
-     
-    timer = setInterval(function(){
-        seconds++
-        if(seconds === 60) {
-            minutes++
-            seconds = 0
-        }
-        time.innerHTML = `${minutes}:${seconds}`    
-    },
-    1000)
-
+    timerFn()
 }
 
 function checkDeskSize(quantity){         //подгоняем грид под количество карточек
@@ -295,24 +300,19 @@ function compareCards(){            //сравниваем карточки
         if(remainingCards === 0){
             clearInterval(timer);
             let finalTime = time.innerHTML;
-            console.log('final time is ' + finalTime);
 
             (quantity === '12') ? recordCheck(0) :
             (quantity === '20') ? recordCheck(1) :
             (quantity === '30') ? recordCheck(2) :
             recordCheck(3);
-            
-            console.log('до побития рекорда0 ' + records[0].time)
-            console.log('до побития рекорда1 ' + records[1].time)
-            console.log('до побития рекорда2 ' + records[2].time)
-            console.log('до побития рекорда3 ' + records[3].time)
 
-        function recordCheck(n){
+        function recordCheck(n){                //если рекорд был побит то заносим инфу в рекорды
             if(records[n].time > finalTime){
-                console.log('вы побили рекорд по времени!гг вп')
+                console.log(`${finalTime} Новый рекорд по времени!`)
                 records[n].time = finalTime
+                localStorage.setItem('records', JSON.stringify(records))
             }else{
-                console.log(`победа, твое время ${finalTime}`)
+                console.log(`Победа, твое время ${finalTime}!`)
             }
         }
             
@@ -335,11 +335,11 @@ function compareCards(){            //сравниваем карточки
     }
 };
 
-let a = '0:0'
+/* let a = '0:0'
 let b = '0:20'
 
 if(a > b){
-    console.log('0:0 > 0:20')
+    console.log('0:20 < 0:0')
 }else{
     console.log('0:20 > 0:0')
 }
@@ -351,4 +351,12 @@ function kek() {
     console.log(records[3].time)    
 }
 
-kek()
+kek() */
+let a = '00:00'
+let b = '0:50'
+
+if(a > b) {
+    console.log(`${a} > ${b}`)
+}else{
+    console.log(`${b} > ${a}`)
+}
