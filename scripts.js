@@ -49,10 +49,10 @@ const objects = [
 
 if(localStorage.length === 0){
     localStorage.setItem('records', JSON.stringify(records = [
-        {cards: '12', time: '9:99', moves: '555'},
-        {cards: '20', time: '9:99', moves: '555'},
-        {cards: '30', time: '9:99', moves: '555'},
-        {cards: '42', time: '9:99', moves: '555'},
+        {cards: '12', time: '', moves: ''},
+        {cards: '20', time: '', moves: ''},
+        {cards: '30', time: '', moves: ''},
+        {cards: '42', time: '', moves: ''},
     ]))
 }
 
@@ -316,22 +316,33 @@ function compareCards(){            //сравниваем карточки
 
         function recordCheck(n){                //если рекорд был побит то заносим инфу в рекорды
             let records = JSON.parse(localStorage.getItem('records'))
-            if(records[n].time > finalTime){
-                console.log(`${finalTime} Новый рекорд по времени!`)
+            if(!records[n].time){
                 records[n].time = finalTime
                 localStorage.setItem('records', JSON.stringify(records))
+                console.log('первый рекорд по времени')
             }else{
-                console.log(`Победа, твое время ${finalTime}!`)
+                if(records[n].time > finalTime){
+                    console.log(`${finalTime} Новый рекорд по времени!`)
+                    records[n].time = finalTime
+                    localStorage.setItem('records', JSON.stringify(records))
+                }else{
+                    console.log(`Победа, твое время ${finalTime}!`)
+                }
             }
-            if(records[n].moves > moves){
-                console.log(`${moves} Новый рекорд по ходам!`)
+            if(!records[n].moves){
                 records[n].moves = moves
                 localStorage.setItem('records', JSON.stringify(records))
+                console.log('первый рекорд по ходам')
             }else{
-                console.log(`Победа, ты справился за ${finalTime} ходов!`)
+                if(records[n].moves > moves){
+                    console.log(`${moves} Новый рекорд по ходам!`)
+                    records[n].moves = moves
+                    localStorage.setItem('records', JSON.stringify(records))
+                }else{
+                    console.log(`Победа, ты справился за ${moves} ходов!`)
+                }
             }
         }
-            
         }
     }else{
         moves ++
