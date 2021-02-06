@@ -100,7 +100,7 @@ body{
     box-shadow: none !important;
 }
 
-.cat:hover, .size:hover, .start:hover, #mixed:hover, #records:hover{
+.cat:hover, .size:hover, .start:hover, #mixed:hover, #records:hover, .popup-close:hover{
     transform: scale(0.9);
     box-shadow: 2px 2px 2px black;
 }
@@ -258,3 +258,58 @@ body{
 .home:hover, .restart:hover{
     background-color: orange;
 }
+
+.popup{
+    width: 70%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top:0;
+    left: 15%;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popup-body{
+    width: 70%;
+    height: 80%;
+    background-color: wheat;
+    margin: 10% auto;
+    border-radius: 25px;
+}
+
+.popup-content{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 5px;
+}
+
+.popup-content div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.twenty{
+    grid-row: 3/4;
+}
+
+.thirty{
+    grid-row: 4/5;
+}
+
+.forty{
+    grid-row: 5/6;
+}
+
+.popup-close{
+    grid-row: 6/7;
+    grid-column: 2/3;
+    background-color: orangered;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 5px black;
+}
+

@@ -8,6 +8,11 @@ const home = document.querySelector('.home')
 const restart = document.querySelector('.restart')
 const time = document.querySelector('.time')
 const movesScreen = document.querySelector('.moves') 
+const recordTimeSlots = document.querySelectorAll('.record-time')
+const recordMovesSlots = document.querySelectorAll('.record-moves')
+const closePopup = document.querySelector('.popup-close')
+const popup = document.querySelector('.popup')
+const showRecords = document.getElementById('records')
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, 
 quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive, timer, moves
@@ -49,10 +54,10 @@ const objects = [
 
 if(localStorage.length === 0){
     localStorage.setItem('records', JSON.stringify(records = [
-        {cards: '12', time: '', moves: ''},
-        {cards: '20', time: '', moves: ''},
-        {cards: '30', time: '', moves: ''},
-        {cards: '42', time: '', moves: ''},
+        {cards: '12', time: '--:--', moves: '--'},
+        {cards: '20', time: '--:--', moves: '--'},
+        {cards: '30', time: '--:--', moves: '--'},
+        {cards: '42', time: '--:--', moves: '--'},
     ]))
 }
 
@@ -156,6 +161,20 @@ start.onclick = () => {
     timerFn()
     moves = 0
     movesScreen.innerHTML = `Moves: ${moves}`
+}
+
+showRecords.onclick = () => {
+    popup.style.opacity = 100
+    popup.style.visibility = 'visible'
+    for(i = 0; i < recordTimeSlots.length; i++){
+        recordTimeSlots[i].innerHTML = JSON.parse(localStorage.getItem('records'))[i].time
+        recordMovesSlots[i].innerHTML = JSON.parse(localStorage.getItem('records'))[i].moves
+    }
+}
+records = JSON.parse(localStorage.getItem('records'))
+closePopup.onclick = () => {
+    popup.style.opacity = 0
+    popup.style.visibility = 'hidden'
 }
 
 function checkDeskSize(quantity){         //подгоняем грид под количество карточек
@@ -316,7 +335,7 @@ function compareCards(){            //сравниваем карточки
 
         function recordCheck(n){                //если рекорд был побит то заносим инфу в рекорды
             let records = JSON.parse(localStorage.getItem('records'))
-            if(!records[n].time){
+            if(records[n].time === '--:--'){
                 records[n].time = finalTime
                 localStorage.setItem('records', JSON.stringify(records))
                 console.log('первый рекорд по времени')
@@ -329,7 +348,7 @@ function compareCards(){            //сравниваем карточки
                     console.log(`Победа, твое время ${finalTime}!`)
                 }
             }
-            if(!records[n].moves){
+            if(records[n].moves === '--'){
                 records[n].moves = moves
                 localStorage.setItem('records', JSON.stringify(records))
                 console.log('первый рекорд по ходам')
