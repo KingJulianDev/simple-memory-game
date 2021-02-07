@@ -15,6 +15,7 @@ const popup = document.querySelector('.popup')
 const popup2 = document.querySelector('.popup2')
 const showRecords = document.getElementById('records')
 const popupHome = document.querySelector('.go-home')
+const popupRestart = document.querySelector('.go-restart')
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, 
 quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive, timer, moves
@@ -136,7 +137,7 @@ function timerFn() {
     1000)
 }
 
-restart.onclick = () => {
+function restartFn(){
     while (desk.firstChild) {
         desk.removeChild(desk.firstChild);
     }
@@ -145,6 +146,16 @@ restart.onclick = () => {
     timerFn()
     moves = 0
     movesScreen.innerHTML = `Moves: ${moves}`
+    popup2.style.visibility = 'hidden'
+    popup2.style.opacity = 0
+}
+
+restart.onclick = () => {
+    restartFn()
+}
+
+popupRestart.onclick = () => {
+    restartFn()
 }
 
 home.onclick = () => {
