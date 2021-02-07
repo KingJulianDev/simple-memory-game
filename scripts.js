@@ -12,7 +12,9 @@ const recordTimeSlots = document.querySelectorAll('.record-time')
 const recordMovesSlots = document.querySelectorAll('.record-moves')
 const closePopup = document.querySelector('.popup-close')
 const popup = document.querySelector('.popup')
+const popup2 = document.querySelector('.popup2')
 const showRecords = document.getElementById('records')
+const popupHome = document.querySelector('.go-home')
 
 let firstCardInner, firstCardId, secondCardInner, secondCardId, quantityOfCards, cards, fronts, backs, 
 quantity, remainingCards, nameOfCategorie, randomObjects, isMixedModeActive, timer, moves
@@ -154,6 +156,19 @@ home.onclick = () => {
             }
         }
     desk.removeAttribute("style")
+}
+
+popupHome.onclick = () => {
+    clearInterval(timer)
+    startScreen.style.display = 'block'
+    if(desk.firstChild){
+        while (desk.firstChild) {
+            desk.removeChild(desk.firstChild);
+            }
+        }
+    desk.removeAttribute("style")
+    popup2.style.visibility = 'hidden'
+    popup2.style.opacity = 0
 }
 
 start.onclick = () => {
@@ -313,8 +328,10 @@ function compareCards(){            //сравниваем карточки
     if(firstCardInner === secondCardInner){
         blockCards()
         setTimeout(function(){          //карточки совпали,удаляем
-            cards[firstCardId].style.visibility = 'hidden'
-            cards[secondCardId].style.visibility = 'hidden'
+            /* cards[firstCardId].style.visibility = 'hidden'
+            cards[secondCardId].style.visibility = 'hidden' */
+            cards[firstCardId].classList.add('quessed')
+            cards[secondCardId].classList.add('quessed')
             firstCardInner = null
             secondCardInner = null
             firstCardId = ''
@@ -334,34 +351,40 @@ function compareCards(){            //сравниваем карточки
             recordCheck(3);
 
         function recordCheck(n){                //если рекорд был побит то заносим инфу в рекорды
+            let recordTimeInfo = document.querySelector('.new-record-time-info')
+            let recordMovesInfo = document.querySelector('.new-record-moves-info')
+            let recordTime = document.querySelector('.new-record-time')
+            let recordMoves = document.querySelector('.new-record-moves')
+            console.log(recordTime)
+            console.log(recordMoves)
+        
             let records = JSON.parse(localStorage.getItem('records'))
+
             if(records[n].time === '--:--'){
                 records[n].time = finalTime
                 localStorage.setItem('records', JSON.stringify(records))
-                console.log('первый рекорд по времени')
+                recordTime.innerHTML = 'New record!'
             }else{
                 if(records[n].time > finalTime){
-                    console.log(`${finalTime} Новый рекорд по времени!`)
                     records[n].time = finalTime
                     localStorage.setItem('records', JSON.stringify(records))
-                }else{
-                    console.log(`Победа, твое время ${finalTime}!`)
+                    recordTime.innerHTML = 'New record!'
                 }
             }
             if(records[n].moves === '--'){
                 records[n].moves = moves
                 localStorage.setItem('records', JSON.stringify(records))
-                console.log('первый рекорд по ходам')
+                recordMoves.innerHTML = 'New record!'
             }else{
                 if(records[n].moves > moves){
-                    console.log(`${moves} Новый рекорд по ходам!`)
                     records[n].moves = moves
                     localStorage.setItem('records', JSON.stringify(records))
-                }else{
-                    console.log(`Победа, ты справился за ${moves} ходов!`)
+                    recordMoves.innerHTML = 'New record!'
                 }
             }
         }
+        popup2.style.visibility = 'visible'
+        popup2.style.opacity = 1
         }
     }else{
         moves ++
@@ -382,3 +405,7 @@ function compareCards(){            //сравниваем карточки
             1000);
     }
 };
+
+
+recordTimeSlots.innerHTML = 'works'
+recordMovesSlots.innerHTML = 'works'
