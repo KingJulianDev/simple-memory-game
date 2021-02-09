@@ -332,6 +332,7 @@ body{
 
 .congrats{
     grid-column: 1/3;
+    font-size: 7vw;
 }
 
 .new-record-content{
@@ -342,6 +343,7 @@ body{
 .new-record-content div{
     width: 100%;
     height: 50%;
+    font-size: 4vw;
 }
 
 .go-restart, .go-home{

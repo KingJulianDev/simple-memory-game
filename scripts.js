@@ -364,35 +364,39 @@ function compareCards(){            //сравниваем карточки
         function recordCheck(n){                //если рекорд был побит то заносим инфу в рекорды
             let recordTimeInfo = document.querySelector('.new-record-time-info')
             let recordMovesInfo = document.querySelector('.new-record-moves-info')
-            let recordTime = document.querySelector('.new-record-time')
-            let recordMoves = document.querySelector('.new-record-moves')
-            console.log(recordTime)
-            console.log(recordMoves)
+            let newRecordTime = document.querySelector('.new-record-time')
+            let newRecordMoves = document.querySelector('.new-record-moves')
         
             let records = JSON.parse(localStorage.getItem('records'))
 
             if(records[n].time === '--:--'){
                 records[n].time = finalTime
                 localStorage.setItem('records', JSON.stringify(records))
-                recordTime.innerHTML = 'New record!'
+                newRecordTime.innerHTML = 'New record!'
             }else{
                 if(records[n].time > finalTime){
                     records[n].time = finalTime
                     localStorage.setItem('records', JSON.stringify(records))
-                    recordTime.innerHTML = 'New record!'
+                    newRecordTime.innerHTML = 'New record!'
+                }else{
+                    newRecordTime.innerHTML = ''
                 }
             }
             if(records[n].moves === '--'){
                 records[n].moves = moves
                 localStorage.setItem('records', JSON.stringify(records))
-                recordMoves.innerHTML = 'New record!'
+                newRecordMoves.innerHTML = 'New record!'
             }else{
                 if(records[n].moves > moves){
                     records[n].moves = moves
                     localStorage.setItem('records', JSON.stringify(records))
-                    recordMoves.innerHTML = 'New record!'
+                    newRecordMoves.innerHTML = 'New record!'
+                }else{
+                    newRecordMoves.innerHTML = ''
                 }
             }
+            recordTimeInfo.innerHTML = `Time: ${finalTime}`
+            recordMovesInfo.innerHTML = `Moves: ${moves}`
         }
         popup2.style.visibility = 'visible'
         popup2.style.opacity = 1
