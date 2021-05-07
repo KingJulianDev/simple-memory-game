@@ -1,93 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Game</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="game">
-        <div class="start-screen">
-            <div class="slider">
-                <div class="item active-slide"><img src="img/cartoons.jpg"></div >
-                <div class="item"><img src="img/flagi.jpg"></div >
-                <div class="item"><img src="img/cars.jpg"></div >
-                <div class="item"><img src="img/football.jpg"></div >
-        
-                <div class="next"></div>
-                <div class="prev"></div>
-            </div>
+      <div class="start-screen">
+        <div class="container">
+          <div class="slider">
+            <div class="item active-slide"><img src="img/cartoons.jpg" /></div>
+            <div class="item"><img src="img/flagi.jpg" /></div>
+            <div class="item"><img src="img/cars.jpg" /></div>
+            <div class="item"><img src="img/football.jpg" /></div>
 
+            <div class="next"></div>
+            <div class="prev"></div>
+          </div>
 
-            <div class="decksize">
-                <div class="size btn" id="12">12</div>
-                <div class="btn" id="mixed">Mixed mode</div>
-                <div class="size btn" id="20">20</div>
-                <div class="size btn" id="30">30</div>
-                <div class="btn" id="records">&#9819;</div>
-                <div class="size btn" id="40">42</div>
-            </div>
-    
-            <div class="start btn">Play!</div>
+          <div class="decksize">
+            <div class="size btn" id="12">12</div>
+            <div class="btn" id="mixed">Mixed mode</div>
+            <div class="size btn" id="20">20</div>
+            <div class="size btn" id="30">30</div>
+            <div class="btn" id="records">&#9819;</div>
+            <div class="size btn" id="40">42</div>
+          </div>
+
+          <div class="start btn">Play!</div>
         </div>
-        
-        <div class="game-screen">
-            <div class="gs-header">
-                <div class="nav restart">Restart</div>
-                <div class="nav time">Time</div>
-                <div class="nav moves">Moves: </div>
-                <div class="nav home">Home</div>
-            </div>
+      </div>
 
-            <div class="desk"></div>
+      <div class="game-screen">
+        <div class="gs-header">
+          <div class="nav restart">Restart</div>
+          <div class="nav time">Time</div>
+          <div class="nav moves">Moves:</div>
+          <div class="nav home">Home</div>
         </div>
 
-        <div class="popup popup1">
-            <div class="popup-body popup-body1">
-                <div class="popup-content popup-content1">
-                    <div></div>
-                    <div class="time">Time</div>
-                    <div class="moves">Moves</div>
-                    <div class="twelve">12 cards</div>
-                    <div class="record-time">--:--</div>
-                    <div class="record-moves">--</div>
-                    <div class="twenty">20 cards</div>
-                    <div class="record-time">--:--</div>
-                    <div class="record-moves">--</div>
-                    <div class="thirty">30 cards</div>
-                    <div class="record-time">--:--</div>
-                    <div class="record-moves">--</div>
-                    <div class="forty">42 cards</div>
-                    <div class="record-time">--:--</div>
-                    <div class="record-moves">--</div>
-                    <div class="popup-close btn">Okay</div>
-                </div>
-            </div>
-        </div>
+        <div class="desk"></div>
+      </div>
 
-        <div class="popup popup2">
-            <div class="popup-body popup-body2">
-                <div class="popup-content popup-content2">
-                    <div class="congrats">Congratulation!</div>
-                    <div class="new-record-content">
-                        <div class="new-record-time"></div>
-                        <div class="new-record-time-info"></div>
-                    </div>
-                    <div class="new-record-content">
-                        <div class="new-record-moves"></div>
-                        <div class="new-record-moves-info"></div>
-                    </div>
-                    <div class="go-restart btn">Again</div>
-                    <div class="go-home btn">Home</div>
-                </div>
-            </div>
+      <div class="popup popup1">
+        <div class="popup-body popup-body1">
+          <div class="popup-content popup-content1">
+            <div></div>
+            <div class="time">Time</div>
+            <div class="moves">Moves</div>
+            <div class="twelve">12 cards</div>
+            <div class="record-time">--:--</div>
+            <div class="record-moves">--</div>
+            <div class="twenty">20 cards</div>
+            <div class="record-time">--:--</div>
+            <div class="record-moves">--</div>
+            <div class="thirty">30 cards</div>
+            <div class="record-time">--:--</div>
+            <div class="record-moves">--</div>
+            <div class="forty">42 cards</div>
+            <div class="record-time">--:--</div>
+            <div class="record-moves">--</div>
+            <div class="popup-close btn">Okay</div>
+          </div>
         </div>
+      </div>
+
+      <div class="popup popup2">
+        <div class="popup-body popup-body2">
+          <div class="popup-content popup-content2">
+            <div class="congrats">Congratulation!</div>
+            <div class="new-record-content">
+              <div class="new-record-time"></div>
+              <div class="new-record-time-info"></div>
+            </div>
+            <div class="new-record-content">
+              <div class="new-record-moves"></div>
+              <div class="new-record-moves-info"></div>
+            </div>
+            <div class="go-restart btn">Again</div>
+            <div class="go-home btn">Home</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    
-
-<script src="scripts.js"></script>
-</body>
+    <script src="scripts.js"></script>
+  </body>
 </html>
