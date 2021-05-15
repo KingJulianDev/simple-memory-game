@@ -419,7 +419,7 @@ function randomCardLocation(x) {
   for (let i = 0; i < x / 2; i++) {
     do {
       randomNumber = Math.floor(Math.random() * objects.length)
-    } while (selectedItems.includes(objects[randomNumber]) === true)
+    } while (selectedItems.includes(objects[randomNumber]))
     selectedItems.push(objects[randomNumber])
   }
 
@@ -430,12 +430,12 @@ function randomCardLocation(x) {
 
     do {
       randomNumber1 = Math.floor(Math.random() * x)
-    } while (usedCards.includes(randomNumber1) === true)
+    } while (usedCards.includes(randomNumber1))
     usedCards.push(randomNumber1)
 
     do {
       randomNumber2 = Math.floor(Math.random() * x)
-    } while (usedCards.includes(randomNumber2) === true)
+    } while (usedCards.includes(randomNumber2))
     usedCards.push(randomNumber2)
 
     backs[randomNumber1].insertAdjacentHTML(
@@ -455,7 +455,7 @@ function randomCardLocation(x) {
     )
   }
 
-  if (isMixedModeActive === false) {
+  if (!isMixedModeActive) {
     //рендеринг картинок в зависимости от режима
     for (let i = 0; i < x / 2; i++) {
       addImage(i, nameOfCategorie)
